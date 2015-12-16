@@ -1,17 +1,8 @@
-﻿Build started 2015-12-16 5:44:35 PM.
+﻿Build started 2015-12-16 6:01:10 PM.
      1>Project "C:\Users\Adam Yu\Documents\GitHub\Bridge\Bridge v1\Bridge v1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yc"stdafx.h" /Fp"x64\Debug\Bridge v1.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt stdafx.cpp
-         stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"x64\Debug\Bridge v1.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Auction.cpp Bid.cpp "Bridge v1.cpp" Card.cpp Deck.cpp
-         Deck.cpp
-     1>c:\users\adam yu\documents\github\bridge\bridge v1\deck.cpp(34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-         Card.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"x64\Debug\Bridge v1.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt "Bridge v1.cpp"
          Bridge v1.cpp
-         Bid.cpp
-         Auction.cpp
-         Generating Code...
-     1>c:\users\adam yu\documents\github\bridge\bridge v1\deck.cpp(64): warning C4715: 'Deck::Access_Card': not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Adam Yu\Documents\GitHub\Bridge\x64\Debug\Bridge v1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Adam Yu\Documents\GitHub\Bridge\x64\Debug\Bridge v1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Adam Yu\Documents\GitHub\Bridge\x64\Debug\Bridge v1.lib" /MACHINE:X64 x64\Debug\Auction.obj
          x64\Debug\Bid.obj
@@ -24,4 +15,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.85
+Time Elapsed 00:00:00.56

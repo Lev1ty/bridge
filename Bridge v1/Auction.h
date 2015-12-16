@@ -4,7 +4,7 @@ class Auction
 public:
 	Auction();
 	~Auction();
-	void Next_Bid(Bid& bid);
+	void Next_Bid(Bid bid);
 	Bid Final();
 	void Print_auction();
 	void Print_Final();

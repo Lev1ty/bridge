@@ -14,7 +14,7 @@ Auction::~Auction()
 }
 
 
-void Auction::Next_Bid(Bid& bid)
+void Auction::Next_Bid(Bid bid)
 {
 	auction.push_back(bid);
 	if (bid.Val() == 43) {

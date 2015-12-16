@@ -18,7 +18,7 @@ Card::~Card()
 }
 
 
-string Card::n_rank_to_rank(const int& n_rank)
+string Card::n_rank_to_rank(int n_rank)
 {
 	switch (n_rank) {
 	case 0:return "2";
@@ -39,7 +39,7 @@ string Card::n_rank_to_rank(const int& n_rank)
 }
 
 
-string Card::n_suit_to_suit(const int& n_suit)
+string Card::n_suit_to_suit(int n_suit)
 {
 	switch (n_suit)
 	{
@@ -100,7 +100,7 @@ void Card::Print_Private()
 }
 
 
-void Card::Assign_Index(const int& index)
+void Card::Assign_Index(int index)
 {
 	n_index = index;
 }

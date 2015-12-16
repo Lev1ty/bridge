@@ -49,7 +49,7 @@ void Deck::Print_deck()
 }
 
 
-Card Deck::Access_Card(const string& suit, const string& rank)
+Card Deck::Access_Card(string suit, string rank)
 {
 	//for (int i = 0; i < deck.size(); i++) {
 	//	if (deck[i].Suit_num() == suit && (deck[i].Rank()).compare(rank)) {
@@ -64,7 +64,7 @@ Card Deck::Access_Card(const string& suit, const string& rank)
 }
 
 
-void Deck::Remove_Card(const string& suit, const string& rank)
+void Deck::Remove_Card(string suit, string rank)
 {
 	const int&pos = Access_Card(suit, rank).Index();
 	deck.erase(deck.begin() + pos);

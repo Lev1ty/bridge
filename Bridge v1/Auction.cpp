@@ -5,6 +5,8 @@
 Auction::Auction()
 {
 	pass_cnt = 0;
+	first_dir_cnt = 0;
+	first_dir_cnt = 0;
 	auction.clear();
 }
 
@@ -25,9 +27,9 @@ void Auction::Next_Bid(Bid bid)
 	}
 }
 
-Bid Auction::Final()
+Bid Auction::Last()
 {
-	return this->final;
+	return last;
 }
 
 
@@ -41,13 +43,13 @@ void Auction::Print_auction()
 
 void Auction::Print_Final()
 {
-	this->final.Print_Private();
+	last.Print_Private();
 }
 
 
 void Auction::init_final()
 {
-	this->final = auction[auction.size() - 1];
+	last = auction[auction.size() - 1];
 }
 
 void Auction::end()

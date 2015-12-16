@@ -1,0 +1,36 @@
+Deck
+	Card
+Error
+Score
+	Auction
+AI
+	Defending
+	Dummy
+	Declarer
+
+
+The game starts with a card
+A card is a member of a deck of cards
+	Which includes the cards from 2 to A
+		for each suit
+			Spade, Heart, Diamond, Club
+
+The auction is made with a series of bids
+	A current bid cannot be lower than the preceding bid
+The auction results in a contract
+	The contract affects the number of points gained or lost
+	The contract is made of a final bid
+		The game will be played in the trump of the final bid
+
+There exists a dummy, declarer, and two defenders in each game
+	The possible combinations are
+		Human is declarer and dummy
+		Human is defender
+			In which case, the other defender and opposing declarer and dummy are needed
+
+The players must follow suit
+	If impossible
+		Then player can play any suit including but not limited to trump
+
+
+Every player starting from North = 0 will be assigned an index

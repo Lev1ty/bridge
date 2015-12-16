@@ -15,6 +15,7 @@ int main()
 	deck.Remove_Card("Spade", "A");
 	auc.Print_auction();
 	deck.Print_deck();
+	deck.Access_Card("Spade", "Q").Print_Private();
     return 0;
 }
 

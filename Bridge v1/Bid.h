@@ -3,7 +3,7 @@ class Bid
 {
 public:
 	Bid();
-	Bid(char dir, string usr_in) :usr_in(usr_in), dir(dir) {}
+	Bid(char dir, string usr_in) :usr_in(usr_in), dir(dir) { Bid(); }
 	~Bid();
 	int Level();
 	int Suit();

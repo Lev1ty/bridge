@@ -4,10 +4,13 @@
 
 Bid::Bid()
 {
+	usr_in = "";
 	n_level = 0;
 	n_suit = 0;
 	n_val = 0;
 	dir = 0;
+	input_to_num();
+	init_n_val();
 }
 
 

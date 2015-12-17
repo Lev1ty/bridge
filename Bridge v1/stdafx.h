@@ -27,3 +27,5 @@ using namespace std;
 #include"Deck.h"
 #include"Bid.h"	
 #include"Auction.h"
+#include"Player.h"
+#include"Score.h"

@@ -17,7 +17,7 @@ Auction::~Auction()
 void Auction::Next_Bid(Bid bid)
 {
 	auction.push_back(bid);
-	if (bid.Val() == 43) {
+	if (bid.Val() == 35) {
 		++pass_cnt;
 	}
 	if (pass_cnt == 3) {

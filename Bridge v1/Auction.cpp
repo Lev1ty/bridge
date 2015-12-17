@@ -5,8 +5,6 @@
 Auction::Auction()
 {
 	pass_cnt = 0;
-	first_dir_cnt = 0;
-	first_dir_cnt = 0;
 	auction.clear();
 }
 
@@ -56,4 +54,17 @@ void Auction::end()
 {
 	init_final();
 	cout << "The auction has ended." << endl;
+}
+
+
+int Auction::Pass()
+{
+	return pass_cnt;
+}
+
+
+void Auction::Print_Private()
+{
+	cout << "pass_cnt " << pass_cnt << ' ';
+	cout << endl;
 }

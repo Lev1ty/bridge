@@ -8,9 +8,7 @@ Bid::Bid()
 	n_level = 0;
 	n_suit = 0;
 	n_val = 0;
-	dir = 0;
-	input_to_num();
-	init_n_val();
+	dir = '-1';
 }
 
 
@@ -78,4 +76,10 @@ void Bid::Print_Private()
 void Bid::init_n_val()
 {
 	n_val = n_level * 5 + n_suit;
+}
+
+
+char Bid::Dir()
+{
+	return dir;
 }

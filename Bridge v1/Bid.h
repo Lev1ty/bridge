@@ -3,11 +3,12 @@ class Bid
 {
 public:
 	Bid();
-	Bid(char dir, string usr_in) :usr_in(usr_in), dir(dir) { Bid(); }
+	Bid(char dir, string usr_in) :usr_in(usr_in), dir(dir) { Bid(); input_to_num(); init_n_val(); }
 	~Bid();
 	int Level();
 	int Suit();
 	int Val();
+	char Dir();
 	string Input();
 	void Print_Private();
 private:

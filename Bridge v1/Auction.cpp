@@ -18,12 +18,16 @@ Auction::~Auction()
 void Auction::Next_Bid(Bid bid)
 {
 	auction.push_back(bid);
+	if (bid.Level() != 7 && bid.Suit() != 0) {
+		pass_cnt = 0;
+	}
 	if (bid.Level() == 7 && bid.Suit() == 0) {
 		++pass_cnt;
 	}
 	if (pass_cnt >= 3 && auction.size() >= 4) {
 		end();
 	}
+	
 }
 
 

@@ -7,7 +7,6 @@ Bid::Bid()
 	usr_in = "";
 	n_level = 0;
 	n_suit = 0;
-	n_val = 0;
 	dir = '-1';
 }
 
@@ -51,35 +50,45 @@ int Bid::Suit()
 	return n_suit;
 }
 
-int Bid::Val()
-{
-	return n_val;
-}
-
 
 string Bid::Input()
 {
 	return usr_in;
 }
 
+
 void Bid::Print_Private()
 {
 	cout << "usr_in " << usr_in << ' ';
 	cout << "n_level " << n_level << ' ';
 	cout << "n_suit " << n_suit << ' ';
-	cout << "n_val " << n_val << ' ';
 	cout << "dir " << dir << ' ';
+	cout << "dir_num " << dir_num << ' ';
 	cout << endl;
 }
 
 
-void Bid::init_n_val()
+void Bid::dir_num_to_dir()
 {
-	n_val = n_level * 5 + n_suit;
+	switch (dir_num)
+	{
+	case 0:dir = 'N';break;
+	case 1:dir = 'E';break;
+	case 2:dir = 'S';break;
+	case 3:dir = 'W';break;
+	default:
+		break;
+	}
 }
 
 
 char Bid::Dir()
 {
 	return dir;
+}
+
+
+int Bid::Dir_Num()
+{
+	return dir_num;
 }

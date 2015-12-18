@@ -3,7 +3,7 @@ class Card
 {
 public:
 	Card();
-	Card(int n_elem) :n_elem(n_elem) { Card(); n_suit = n_elem / 13; n_rank = n_elem % 13; rank = n_rank_to_rank(n_rank); suit = n_suit_to_suit(n_suit); }
+	Card(int n_elem) :n_elem(n_elem) { Card(); n_suit = n_elem / 13; n_rank = n_elem % 13; n_rank_to_rank(); n_suit_to_suit(); }
 	~Card();
 	void Assign_Index(int index);
 	int Index();
@@ -18,8 +18,8 @@ private:
 	int n_elem;
 	int n_suit;
 	int n_rank;
-	string n_rank_to_rank(int n_rank);
-	string n_suit_to_suit(int n_suit);
+	void n_rank_to_rank();
+	void n_suit_to_suit();
 	string rank;
 	string suit;
 };

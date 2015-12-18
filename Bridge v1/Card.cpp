@@ -18,36 +18,36 @@ Card::~Card()
 }
 
 
-string Card::n_rank_to_rank(int n_rank)
+void Card::n_rank_to_rank()
 {
 	switch (n_rank) {
-	case 0:return "2";
-	case 1:return "3";
-	case 2:return "4";
-	case 3:return "5";
-	case 4:return "6";
-	case 5:return "7";
-	case 6:return "8";
-	case 7:return "9";
-	case 8:return "10";
-	case 9:return "J";
-	case 10:return "Q";
-	case 11:return "K";
-	case 12:return "A";
-	default:return "-1";
+	case 0:rank = "2";break;
+	case 1:rank = "3";break;
+	case 2:rank = "4";break;
+	case 3:rank = "5";break;
+	case 4:rank = "6";break;
+	case 5:rank = "7";break;
+	case 6:rank = "8";break;
+	case 7:rank = "9";break;
+	case 8:rank = "10";break;
+	case 9:rank = "J";break;
+	case 10:rank = "Q";break;
+	case 11:rank = "K";break;
+	case 12:rank = "A";break;
+	default:rank = "-1";break;
 	}
 }
 
 
-string Card::n_suit_to_suit(int n_suit)
+void Card::n_suit_to_suit()
 {
 	switch (n_suit)
 	{
-	case 0:return"Spade";
-	case 1:return"Heart";
-	case 2:return"Diamond";
-	case 3:return"Club";
-	default:return"-1";
+	case 0:suit = "Spade";break;
+	case 1:suit = "Heart";break;
+	case 2:suit = "Diamond";break;
+	case 3:suit = "Club";break;
+	default:suit = "-1";break;
 	}
 }
 

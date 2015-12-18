@@ -6,7 +6,7 @@
 
 int main()
 {
-	Deck deck;
+	/*Deck deck;
 	Auction auc;
 	auc.Next_Bid(Bid('N', "1C"));
 	auc.Next_Bid(Bid('E', "1D"));
@@ -23,7 +23,33 @@ int main()
 	deck.Print_deck();
 	deck.Access_Card("Spade", "Q").Print_Private();
 	deck = Deck();
-	deck.Print_deck();
+	deck.Print_deck();*/
+	while (true)
+	{
+		int dir_num = rand() % 4;
+		string end_program = "";
+		Deck deck = Deck();
+		Auction auction = Auction();
+		Score score = Score();
+		Player north = Player(), east = Player(), south = Player(), west = Player();
+		while (true)
+		{
+			while (!auction.End())
+			{
+				string usr_bid;
+				cin >> usr_bid;
+				auction.Next_Bid(Bid(dir_num, usr_bid));
+				//debug
+				auction.Print_Private();
+				auction.Print_Auction();
+			}
+			//debug
+			cout << "Out of Auction" << endl;
+			auction.Print_Final();
+			//ending updates
+			dir_num = (dir_num < 4 ? ++dir_num : dir_num = 0);
+		}
+	}
     return 0;
 }
 

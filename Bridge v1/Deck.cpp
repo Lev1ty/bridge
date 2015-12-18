@@ -6,6 +6,7 @@ Deck::Deck()
 {
 	deck.clear();
 	init_deck();
+	deck.reserve(52);
 }
 
 
@@ -42,7 +43,7 @@ void Deck::Shuffle()
 }
 
 
-void Deck::Print_deck()
+void Deck::Print_Deck()
 {
 	for (Card&c : deck)
 		c.Print_Private();
@@ -72,4 +73,10 @@ void Deck::Remove_Card(string suit, string rank)
 		int index = deck[i].Index() - 1;
 		deck[i].Assign_Index(index);
 	}
+}
+
+
+vector<Card> Deck::Deck_()
+{
+	return deck;
 }

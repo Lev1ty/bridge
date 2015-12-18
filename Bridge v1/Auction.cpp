@@ -21,10 +21,11 @@ void Auction::Next_Bid(Bid bid)
 	if (bid.Level() == 7 && bid.Suit() == 0) {
 		++pass_cnt;
 	}
-	if (pass_cnt == 3) {
+	if (pass_cnt >= 3 && auction.size() >= 4) {
 		end();
 	}
 }
+
 
 Bid Auction::Last()
 {
@@ -51,11 +52,19 @@ void Auction::init_final()
 	last = auction[auction.size() - 4];
 }
 
+
 void Auction::end()
 {
 	init_final();
 	end_bool = true;
-	cout << "The auction has ended." << endl;
+	if (last.Level() == 7 && last.Suit() == 0)
+	{
+		cout << "The game has been passed out." << endl;
+	}
+	else
+	{
+		cout << "The auction has ended." << endl;
+	}
 }
 
 
@@ -76,4 +85,10 @@ void Auction::Print_Private()
 bool Auction::End()
 {
 	return end_bool;
+}
+
+
+vector<Bid> Auction::Auction_()
+{
+	return auction;
 }

@@ -8,6 +8,7 @@ Bid::Bid()
 	n_level = 0;
 	n_suit = 0;
 	dir = '-1';
+	dir_num = 0;
 }
 
 
@@ -68,18 +69,29 @@ void Bid::Print_Private()
 }
 
 
-void Bid::dir_num_to_dir()
-{
-	switch (dir_num)
-	{
-	case 0:dir = 'N';break;
-	case 1:dir = 'E';break;
-	case 2:dir = 'S';break;
-	case 3:dir = 'W';break;
-	default:
-		break;
-	}
-}
+//void Bid::dir_num_to_dir()
+//{
+//	switch (dir_num)
+//	{
+//	case 0:dir = 'N';break;
+//	case 1:dir = 'E';break;
+//	case 2:dir = 'S';break;
+//	case 3:dir = 'W';break;
+//	default:dir = '-1';break;
+//	}
+//}
+//
+//void Bid::dir_to_dir_num()
+//{
+//	switch (dir)
+//	{
+//	case'N':dir_num = 0;break;
+//	case'E':dir_num = 1;break;
+//	case'S':dir_num = 2;break;
+//	case'W':dir_num = 3;break;
+//	default:dir_num = -1;break;
+//	}
+//}
 
 
 char Bid::Dir()

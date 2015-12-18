@@ -11,6 +11,7 @@ public:
 	int Pass();
 	void Print_Private();
 	bool End();
+	vector<Bid> Auction_();
 private:
 	vector<Bid> auction;
 	Bid last;

@@ -32,6 +32,9 @@ int main()
 	//two.Print_Hand();
 	while (true)
 	{
+		static int cnt = 1;
+		cout << cnt << "------------" << endl;
+		cnt++;
 		int dir_num = rand() % 4;
 		string end_program = "";
 		Deck deck = Deck();

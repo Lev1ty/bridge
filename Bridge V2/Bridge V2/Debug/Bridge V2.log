@@ -1,2 +1,3 @@
 ﻿  Bridge V2.cpp
-  Bridge V2.vcxproj -> C:\Users\Adam Yu\Documents\GitHub\CC2-Q4\Bridge V2\Debug\Bridge V2.exe
+c:\users\adam yu\documents\github\bridge\bridge v2\bridge v2\bridge v2.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Bridge V2.vcxproj -> C:\Users\Adam Yu\Documents\GitHub\Bridge\Bridge V2\Debug\Bridge V2.exe

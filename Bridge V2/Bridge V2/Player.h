@@ -7,6 +7,8 @@ public:
 	~Player();
 	vector<Card>hand;
 	vector<Bid>auc;
+	int Dir() { return dir; }
+	bool Vul() { return vul; }
 private:
 	int dir;
 	bool vul;

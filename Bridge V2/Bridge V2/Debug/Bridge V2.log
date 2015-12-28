@@ -1,3 +1,10 @@
-﻿  Bridge V2.cpp
+﻿  stdafx.cpp
+  Translate.cpp
+  Player.cpp
+  Card.cpp
+  Bridge V2.cpp
 c:\users\adam yu\documents\github\bridge\bridge v2\bridge v2\bridge v2.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Bid.cpp
+  Running Code Analysis for C/C++...
+  Generating Code...
   Bridge V2.vcxproj -> C:\Users\Adam Yu\Documents\GitHub\Bridge\Bridge V2\Debug\Bridge V2.exe

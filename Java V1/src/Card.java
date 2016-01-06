@@ -1,55 +1,62 @@
 /**
  * Created by Adam on 1/5/2016.
  */
-class Card{
+class Card {
     final int nvalue;
     int nsuit, nrank, ndirection;
     String lssuit, ssuit, srank, sdirection;
-    private Card(){
+
+    private Card() {
 //        nindex = 0;
         nvalue = 0;
         nsuit = 0;
         nrank = 0;
         ndirection = 0;
     }
-    public Card(int nvalue){
+
+    public Card(int nvalue) {
         new Card();
         this.nvalue = nvalue;
         nValuetonSuitRank();
         nSuitRanktosSuitRank();
         nSuittolsSuit();
     }
-    public void nDirection(int ndirection){
-        if (this.ndirection==0&&ndirection>=0&&ndirection<=3) {
+
+    public void nDirection(int ndirection) {
+        if (this.ndirection == 0 && ndirection >= 0 && ndirection <= 3) {
             this.ndirection = ndirection;
             nDirectiontosDirection();
-        }
-        else System.out.println("Overwrite or Range error at class Card nDirection.");
+        } else System.out.println("Overwrite or Range error at class Card nDirection.");
     }
+
     //<editor-fold desc="nIndex">
 /*    public void nIndex(int nindex){
         if (nindex>=0&&nindex<=51) this.nindex = nindex;
         else System.out.println("Range error at class Card nIndex.");
     }*/
 //</editor-fold>
-    private void nValuetonSuitRank(){
+    private void nValuetonSuitRank() {
         nValuetonSuit();
         nValuetonRank();
     }
-    private void nValuetonSuit(){
-        if (nsuit==0&&nvalue>=0&&nvalue<=51) nsuit = nvalue / 13;
+
+    private void nValuetonSuit() {
+        if (nsuit == 0 && nvalue >= 0 && nvalue <= 51) nsuit = nvalue / 13;
         else System.out.println("Overwrite or Range error at class Card nValuetoSuit.");
     }
-    private void nValuetonRank(){
-        if (nrank==0&&nvalue>=0&&nvalue<=51) nrank = nvalue % 13;
+
+    private void nValuetonRank() {
+        if (nrank == 0 && nvalue >= 0 && nvalue <= 51) nrank = nvalue % 13;
         else System.out.println("Overwrite or Range error at class Card nValuetonRank.");
     }
-    private void nSuitRanktosSuitRank(){
+
+    private void nSuitRanktosSuitRank() {
         nSuittosSuit();
         nRanktosRank();
     }
-    private void nSuittosSuit(){
-        if (ssuit==null&&nsuit>=0&&nsuit<=3) switch (nsuit) {
+
+    private void nSuittosSuit() {
+        if (ssuit == null && nsuit >= 0 && nsuit <= 3) switch (nsuit) {
             case 0:
                 ssuit = "S";
                 break;
@@ -68,8 +75,9 @@ class Card{
         }
         else System.out.println("Overwrite or Range error at class Card nSuittosSuit.");
     }
-    private void nRanktosRank(){
-        if (srank==null&&nrank>=0&&nrank<=12) {
+
+    private void nRanktosRank() {
+        if (srank == null && nrank >= 0 && nrank <= 12) {
             if (nrank <= 7) srank = String.valueOf((char) ('0' + nrank + 2));
             else switch (nrank) {
                 case 8:
@@ -91,11 +99,11 @@ class Card{
                     assert (nrank >= 0 && nrank <= 12);
                     break;
             }
-        }
-        else System.out.println("Overwrite or Range error at class Card nRanktosRank.");
+        } else System.out.println("Overwrite or Range error at class Card nRanktosRank.");
     }
-    private void nSuittolsSuit(){
-        if (lssuit==null&&nsuit>=0&&nsuit<=3) switch (nsuit) {
+
+    private void nSuittolsSuit() {
+        if (lssuit == null && nsuit >= 0 && nsuit <= 3) switch (nsuit) {
             case 0:
                 lssuit = "Spade";
                 break;
@@ -114,8 +122,9 @@ class Card{
         }
         else System.out.println("Overwrite or Range error at class Card nSuittolsSuit.");
     }
-    private void nDirectiontosDirection(){
-        if (sdirection==null&&ndirection>=0&&ndirection<=3) switch (ndirection) {
+
+    private void nDirectiontosDirection() {
+        if (sdirection == null && ndirection >= 0 && ndirection <= 3) switch (ndirection) {
             case 0:
                 sdirection = "N";
                 break;

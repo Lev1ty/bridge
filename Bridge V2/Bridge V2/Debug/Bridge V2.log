@@ -1,10 +1,26 @@
-﻿  stdafx.cpp
-  Translate.cpp
-  Player.cpp
-  Card.cpp
-  Bridge V2.cpp
-c:\users\adam yu\documents\github\bridge\bridge v2\bridge v2\bridge v2.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Bid.cpp
-  Running Code Analysis for C/C++...
-  Generating Code...
-  Bridge V2.vcxproj -> C:\Users\Adam Yu\Documents\GitHub\Bridge\Bridge V2\Debug\Bridge V2.exe
+﻿Build started 1/6/2016 10:29:05 AM.
+     1>Project "E:\GitHub\Bridge\Bridge V2\Bridge V2\Bridge V2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yc"stdafx.h" /Fp"Debug\Bridge V2.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\Bridge V2.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Bid.cpp "Bridge V2.cpp" Card.cpp Player.cpp Translate.cpp
+         Translate.cpp
+         Player.cpp
+         Card.cpp
+         Bridge V2.cpp
+     1>e:\github\bridge\bridge v2\bridge v2\bridge v2.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+         Bid.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\GitHub\Bridge\Bridge V2\Debug\Bridge V2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\GitHub\Bridge\Bridge V2\Debug\Bridge V2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\GitHub\Bridge\Bridge V2\Debug\Bridge V2.lib" /MACHINE:X86 Debug\Bid.obj
+         "Debug\Bridge V2.obj"
+         Debug\Card.obj
+         Debug\Player.obj
+         Debug\stdafx.obj
+         Debug\Translate.obj
+         Bridge V2.vcxproj -> E:\GitHub\Bridge\Bridge V2\Debug\Bridge V2.exe
+     1>Done Building Project "E:\GitHub\Bridge\Bridge V2\Bridge V2\Bridge V2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:58.38

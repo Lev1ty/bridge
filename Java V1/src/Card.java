@@ -29,6 +29,20 @@ class Card {
         } else System.out.println("Overwrite or Range error at class Card nDirection.");
     }
 
+    public void Print(){
+        System.out.println(
+                "nvalue: " + nvalue +
+                        " nrank: " + nrank +
+                        " nsuit: " + nsuit +
+//                " nindex: " + c.nindex +
+                        " ndirection: " + ndirection +
+                        " ssuit: " + ssuit +
+                        " srank: " + srank +
+                        " lssuit: " + lssuit +
+                        " sdirection: " + sdirection
+        );
+    }
+
     //<editor-fold desc="nIndex">
 /*    public void nIndex(int nindex){
         if (nindex>=0&&nindex<=51) this.nindex = nindex;
@@ -72,8 +86,7 @@ class Card {
             default:
                 assert (nsuit >= 0 && nsuit <= 3);
                 break;
-        }
-        else System.out.println("Overwrite or Range error at class Card nSuittosSuit.");
+        } else System.out.println("Overwrite or Range error at class Card nSuittosSuit.");
     }
 
     private void nRanktosRank() {
@@ -119,8 +132,7 @@ class Card {
             default:
                 assert (nsuit >= 0 && nsuit <= 3);
                 break;
-        }
-        else System.out.println("Overwrite or Range error at class Card nSuittolsSuit.");
+        } else System.out.println("Overwrite or Range error at class Card nSuittolsSuit.");
     }
 
     private void nDirectiontosDirection() {
@@ -140,7 +152,6 @@ class Card {
             default:
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
-        }
-        else System.out.println("Overwrite or Range error in Card nDirectiontosDirection.");
+        } else System.out.println("Overwrite or Range error in Card nDirectiontosDirection.");
     }
 }

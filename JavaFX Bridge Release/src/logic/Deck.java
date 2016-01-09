@@ -10,7 +10,7 @@ public class Deck {
     public Deck() {
         deck = new Card[52];
         initDeck();
-        //Shuffle();
+        Shuffle();
         assignDirection();
         nend = 12;
         eend = 25;

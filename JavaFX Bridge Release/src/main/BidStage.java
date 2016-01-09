@@ -22,11 +22,14 @@ public class BidStage {
     private Stage stage;
 
     public BidStage(String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
-        main (sdirection, startLevel, endLevel, startSuit, endSuit);
+        this.sdirection = sdirection;
+        start (sdirection, startLevel, endLevel, startSuit, endSuit);
     }
 
     public BidStage(int ndirection, int startLevel, int endLevel, int startSuit, int endSuit) {
-        main (ndirection, startLevel, endLevel, startSuit, endSuit);
+        this.ndirection = ndirection;
+        sdirection = Bid.nDirectiontosDirection (ndirection);
+        start (ndirection, startLevel, endLevel, startSuit, endSuit);
     }
 
     private void start(String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
@@ -73,10 +76,8 @@ public class BidStage {
             ++auction.nbid;
             if (auction.nbid == 4 && auction.npass == 4) {
                 stage.close ( );
-                return;
             } else if (auction.bcontract && auction.npass >= 3 && auction.nbid >= 4) {
                 stage.close ( );
-                return;
             } else {
                 if (bid.nvalue >= 35) {
                     Bid lastValueBid = new Bid ( );
@@ -222,16 +223,5 @@ public class BidStage {
         }
         hBox.getChildren ( ).addAll (arr);
         return hBox;
-    }
-
-    public void main(String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
-        this.sdirection = sdirection;
-        start (sdirection, startLevel, endLevel, startSuit, endSuit);
-    }
-
-    public void main(int ndirection, int startLevel, int endLevel, int startSuit, int endSuit) {
-        this.ndirection = ndirection;
-        sdirection = Bid.nDirectiontosDirection (ndirection);
-        start (ndirection, startLevel, endLevel, startSuit, endSuit);
     }
 }

@@ -11,7 +11,7 @@ public class Auction {
     public boolean bcontract, x, xx;
 
     public Auction() {
-        auction = new ArrayList<>();
+        auction = new ArrayList<> ();
         nbid = 0;
         npass = 0;
         bcontract = false;
@@ -20,17 +20,17 @@ public class Auction {
     }
 
     public void push_back(int nvalue, int ndirection) {
-        auction.add(new Bid(nvalue, ndirection));
+        auction.add ( new Bid ( nvalue, ndirection ) );
     }
 
     public void printAuction() {
         for (Bid b :
                 auction)
-            b.Print();
+            b.Print ();
     }
 
     public void printField() {
-        System.out.println ("nbid: " + nbid +
+        System.out.println ( "nbid: " + nbid +
                 " npass: " + npass +
                 " bcontract: " + bcontract +
                 " x: " + x +

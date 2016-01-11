@@ -6,7 +6,7 @@ package logic;
 public class Bid {
     // TODO: 1/5/2016 Make bid then make auction wrapper for bid
     public int nvalue, ndirection, nlevel, nsuit;
-    public String slevel, ssuit, sdirection;
+    public String slevel, ssuit, sdirection, svalue;
     public boolean x, xx;
 
     public Bid() {
@@ -19,31 +19,31 @@ public class Bid {
     }
 
     public Bid(int nvalue, int ndirection) {
-        new Bid();
+        new Bid ();
         this.nvalue = nvalue;
         this.ndirection = ndirection;
-        nValuetonSuitLevel();
-        nSuitLeveltosSuitLevel();
-        nDirectiontosDirection();
+        nValuetonSuitLevel ();
+        nSuitLeveltosSuitLevel ();
+        nDirectiontosDirection ();
     }
 
     public Bid(String svalue, String sdirection) {
-        new Bid();
+        new Bid ();
         this.sdirection = sdirection;
-        sValuetonValue(svalue);
-        sDirectiontonDirection();
-        nValuetonSuitLevel();
-        nSuitLeveltosSuitLevel();
-        nDirectiontosDirection();
+        sValuetonValue ( svalue );
+        sDirectiontonDirection ();
+        nValuetonSuitLevel ();
+        nSuitLeveltosSuitLevel ();
+        nDirectiontosDirection ();
     }
 
-    public Bid(String svalue, int ndirection){
-        new Bid();
+    public Bid(String svalue, int ndirection) {
+        new Bid ();
         this.ndirection = ndirection;
-        sValuetonValue(svalue);
-        nValuetonSuitLevel();
-        nSuitLeveltosSuitLevel();
-        nDirectiontosDirection();
+        sValuetonValue ( svalue );
+        nValuetonSuitLevel ();
+        nSuitLeveltosSuitLevel ();
+        nDirectiontosDirection ();
     }
 
     public static String nDirectiontosDirection(int ndirection) {
@@ -65,16 +65,17 @@ public class Bid {
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
         }
-        else System.out.println("Range error at class Bid in nDirectiontosDirection.");
+        else System.out.println ( "Range error at class Bid in nDirectiontosDirection." );
         return sdirection;
     }
 
     public void Print() {
-        System.out.println(
+        System.out.println (
                 "nvalue: " + nvalue +
                         " ndirection: " + ndirection +
                         " nlevel: " + nlevel +
                         " nsuit: " + nsuit +
+                        " svalue: " + svalue +
                         " slevel: " + slevel +
                         " ssuit: " + ssuit +
                         " sdirection: " + sdirection
@@ -82,7 +83,7 @@ public class Bid {
     }
 
     private void sDirectiontonDirection() {
-        switch (sdirection.charAt(1)) {
+        switch (sdirection.charAt ( 1 )) {
             case 'N':
                 ndirection = 0;
                 break;
@@ -101,14 +102,15 @@ public class Bid {
     }
 
     private void sValuetonValue(String svalue) {
+        this.svalue = svalue;
         int nlevel = 0, nsuit = 0;
         if (svalue.length () > 3) {
-            if (svalue.equals ("Pass")) nsuit = 35;
-            else if (svalue.equals ("Double")) nsuit = 36;
-            else if (svalue.equals ("Redouble")) nsuit = 37;
+            if (svalue.equals ( "Pass" )) nsuit = 35;
+            else if (svalue.equals ( "Double" )) nsuit = 36;
+            else if (svalue.equals ( "Redouble" )) nsuit = 37;
         } else {
-            nlevel = svalue.charAt (0) - '1';
-            switch (svalue.charAt (1)) {
+            nlevel = svalue.charAt ( 0 ) - '1';
+            switch (svalue.charAt ( 1 )) {
                 case 'C':
                     nsuit = 0;
                     break;
@@ -137,7 +139,7 @@ public class Bid {
             else if (nvalue == 36) nsuit = -2;
             else if (nvalue == 37) nsuit = -3;
             else nsuit = nvalue % 5;
-        } else System.out.println("Overwrite or Range error in class Bid nValuetonSuit.");
+        } else System.out.println ( "Overwrite or Range error in class Bid nValuetonSuit." );
     }
 
     private void nValuetonLevel() {
@@ -145,12 +147,12 @@ public class Bid {
 //            if (nvalue >= 35) nlevel = -1;
 //            else nlevel = nvalue / 5;
             nlevel = nvalue / 5;
-        } else System.out.println("Overwrite or Range error in class Bid nValuetonSuit.");
+        } else System.out.println ( "Overwrite or Range error in class Bid nValuetonSuit." );
     }
 
     private void nValuetonSuitLevel() {
-        nValuetonLevel();
-        nValuetonSuit();
+        nValuetonLevel ();
+        nValuetonSuit ();
     }
 
     private void nSuittosSuit() {
@@ -183,19 +185,19 @@ public class Bid {
                 assert (nsuit >= -3 && nsuit <= 4);
                 break;
         }
-        else System.out.println("Overwrite or Range error at class Bid nSuittosSuit.");
+        else System.out.println ( "Overwrite or Range error at class Bid nSuittosSuit." );
     }
 
     private void nLeveltosLevel() {
         if (slevel == null && nlevel >= 0 && nlevel <= 7) {
             if (nlevel == 7) slevel = "Aux";
-            else slevel = String.valueOf((char) (nlevel + 1 + '0'));
-        } else System.out.println("Overwrite or Range error at class Bid nLeveltosLevel.");
+            else slevel = String.valueOf ( (char) (nlevel + 1 + '0') );
+        } else System.out.println ( "Overwrite or Range error at class Bid nLeveltosLevel." );
     }
 
     private void nSuitLeveltosSuitLevel() {
-        nSuittosSuit();
-        nLeveltosLevel();
+        nSuittosSuit ();
+        nLeveltosLevel ();
     }
 
     private void nDirectiontosDirection() {
@@ -216,6 +218,6 @@ public class Bid {
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
         }
-        else System.out.println("Overwrite or Range error at class Bid in nDirectiontosDirection.");
+        else System.out.println ( "Overwrite or Range error at class Bid in nDirectiontosDirection." );
     }
 }

@@ -5,14 +5,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static void main(String[] args) {
-        launch (args);
+        launch ( args );
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         BidStage bidStage;
-        int rngdir1 = (int) (Math.random ( ) * 100 % 4);
-        bidStage = new BidStage (rngdir1, 1, 7, 0, 4);
+        int rngdir1 = (int) (Math.random () * 100 % 4);
+        bidStage = new BidStage ( rngdir1, 1, 7, 0, 4 );
 //        recursiveDisplayStage (bidStage, rngdir1);
     }
 

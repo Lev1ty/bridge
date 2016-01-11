@@ -13,36 +13,37 @@ import javafx.stage.Stage;
  */
 public class ConfirmBox {
     static boolean answer;
-    public static boolean display(String title, String message){
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title);
-        window.setMinWidth(250);
-        Label label = new Label();
-        label.setText(message);
+
+    public static boolean display(String title, String message) {
+        Stage window = new Stage ();
+        window.initModality ( Modality.APPLICATION_MODAL );
+        window.setTitle ( title );
+        window.setMinWidth ( 250 );
+        Label label = new Label ();
+        label.setText ( message );
 
         //Two choices
-        Button yes = new Button("Yes");
-        Button no = new Button("No");
+        Button yes = new Button ( "Yes" );
+        Button no = new Button ( "No" );
 
         //Clicking reactions
-        yes.setOnAction(e ->{
+        yes.setOnAction ( e -> {
             answer = true;
-            window.close();
-        });
-        no.setOnAction(e ->{
+            window.close ();
+        } );
+        no.setOnAction ( e -> {
             answer = false;
-            window.close();
-        });
+            window.close ();
+        } );
 
-        VBox layout = new VBox(10);
+        VBox layout = new VBox ( 10 );
 
         //Add buttons to layout and to scene to stage
-        layout.getChildren().addAll(label, yes, no);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+        layout.getChildren ().addAll ( label, yes, no );
+        layout.setAlignment ( Pos.CENTER );
+        Scene scene = new Scene ( layout );
+        window.setScene ( scene );
+        window.showAndWait ();
 
         return answer;
     }

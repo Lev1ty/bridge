@@ -17,18 +17,18 @@ public class Card {
     }
 
     public Card(int nvalue) {
-        new Card ();
+        new Card ( );
         this.nvalue = nvalue;
-        nValuetonSuitRank ();
-        nSuitRanktosSuitRank ();
-        nSuittolsSuit ();
+        nValuetonSuitRank ( );
+        nSuitRanktosSuitRank ( );
+        nSuittolsSuit ( );
     }
 
     public void nDirection(int ndirection) {
         if (this.ndirection == 0 && ndirection >= 0 && ndirection <= 3) {
             this.ndirection = ndirection;
-            nDirectiontosDirection ();
-        } else System.out.println ( "Overwrite or Range error at class Card nDirection." );
+            nDirectiontosDirection ( );
+        } else System.out.println ("Overwrite or Range error at class Card nDirection.");
     }
 
     public void Print() {
@@ -52,23 +52,23 @@ public class Card {
     }*/
 //</editor-fold>
     private void nValuetonSuitRank() {
-        nValuetonSuit ();
-        nValuetonRank ();
+        nValuetonSuit ( );
+        nValuetonRank ( );
     }
 
     private void nValuetonSuit() {
         if (nsuit == 0 && nvalue >= 0 && nvalue <= 51) nsuit = nvalue / 13;
-        else System.out.println ( "Overwrite or Range error at class Card nValuetoSuit." );
+        else System.out.println ("Overwrite or Range error at class Card nValuetoSuit.");
     }
 
     private void nValuetonRank() {
         if (nrank == 0 && nvalue >= 0 && nvalue <= 51) nrank = nvalue % 13;
-        else System.out.println ( "Overwrite or Range error at class Card nValuetonRank." );
+        else System.out.println ("Overwrite or Range error at class Card nValuetonRank.");
     }
 
     private void nSuitRanktosSuitRank() {
-        nSuittosSuit ();
-        nRanktosRank ();
+        nSuittosSuit ( );
+        nRanktosRank ( );
     }
 
     private void nSuittosSuit() {
@@ -89,12 +89,12 @@ public class Card {
                 assert (nsuit >= 0 && nsuit <= 3);
                 break;
         }
-        else System.out.println ( "Overwrite or Range error at class Card nSuittosSuit." );
+        else System.out.println ("Overwrite or Range error at class Card nSuittosSuit.");
     }
 
     private void nRanktosRank() {
         if (srank == null && nrank >= 0 && nrank <= 12) {
-            if (nrank <= 7) srank = String.valueOf ( (char) ('0' + nrank + 2) );
+            if (nrank <= 7) srank = String.valueOf ((char) ('0' + nrank + 2));
             else switch (nrank) {
                 case 8:
                     srank = "10";
@@ -115,7 +115,7 @@ public class Card {
                     assert (nrank >= 0 && nrank <= 12);
                     break;
             }
-        } else System.out.println ( "Overwrite or Range error at class Card nRanktosRank." );
+        } else System.out.println ("Overwrite or Range error at class Card nRanktosRank.");
     }
 
     private void nSuittolsSuit() {
@@ -136,7 +136,7 @@ public class Card {
                 assert (nsuit >= 0 && nsuit <= 3);
                 break;
         }
-        else System.out.println ( "Overwrite or Range error at class Card nSuittolsSuit." );
+        else System.out.println ("Overwrite or Range error at class Card nSuittolsSuit.");
     }
 
     private void nDirectiontosDirection() {
@@ -157,6 +157,6 @@ public class Card {
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
         }
-        else System.out.println ( "Overwrite or Range error in Card nDirectiontosDirection." );
+        else System.out.println ("Overwrite or Range error in Card nDirectiontosDirection.");
     }
 }

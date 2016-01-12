@@ -9,9 +9,9 @@ public class Deck {
 
     public Deck() {
         deck = new Card[52];
-        initDeck ();
-        Shuffle ();
-        assignDirection ();
+        initDeck ( );
+        Shuffle ( );
+        assignDirection ( );
         nend = 12;
         eend = 25;
         send = 38;
@@ -45,19 +45,19 @@ public class Deck {
             else for (int i = 1; i < size; i++)
                 deck[i - 1] = deck[i];
             --size;
-            deck = resize ( deck, size );
-        } else System.out.println ( "No card found that nvalue matches parameter" );
+            deck = resize (deck, size);
+        } else System.out.println ("No card found that nvalue matches parameter");
     }
 
     public void printDeck() {
         for (Card c :
                 deck)
-            c.Print ();
+            c.Print ( );
     }
 
     private void Shuffle() {
         for (int i = 51; i >= 1; --i) {
-            int j = (int) (Math.random () * 100 % i);
+            int j = (int) (Math.random ( ) * 100 % i);
             Card temp = deck[i];
             deck[i] = deck[j];
             deck[j] = temp;
@@ -65,14 +65,14 @@ public class Deck {
     }
 
     private void initDeck() {
-        for (int i = 0; i < 52; i++) deck[i] = new Card ( i );
+        for (int i = 0; i < 52; i++) deck[i] = new Card (i);
     }
 
     private void assignDirection() {
         int dir = 0, itCnt = 0;
         for (Card c :
                 deck) {
-            c.nDirection ( dir );
+            c.nDirection (dir);
             if (++itCnt % 13 == 0) ++dir;
         }
     }

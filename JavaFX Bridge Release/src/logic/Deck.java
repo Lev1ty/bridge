@@ -4,48 +4,65 @@ package logic;
  * Created by adamx on 1/8/2016.
  */
 public class Deck {
-    Card deck[];
-    int nend, eend, send, wend, size;
+    public Card deck[];
 
     public Deck() {
-        deck = new Card[52];
         initDeck ( );
         Shuffle ( );
         assignDirection ( );
-        nend = 12;
-        eend = 25;
-        send = 38;
-        wend = 51;
-        size = 52;
+    }
+
+    public Deck(int ndirection, Deck parentDeck) {
+        initDeck (ndirection, parentDeck);
+        sortBySuit ( );
+        sortByRank ( );
+    }
+
+    private void sortBySuit() {
+//        for (int i = 0; i < size; i++) {
+//            int lowPos = i;
+//            for (int j = lowPos + 1; j < size; j++) {
+//                if (deck[j].nsuit < deck[lowPos].nsuit) {
+//                    lowPos = j;
+//                }
+//            }
+//            Card temp = deck[lowPos];
+//            deck[lowPos] = deck[i];
+//            deck[i] = temp;
+//        }
+        for (int i = 0; i < deck.length - 1; i++)
+            for (int j = 0; j < deck.length - 1; j++)
+                if (deck[j].nsuit > deck[j + 1].nsuit) {
+                    Card temp = deck[j];
+                    deck[j] = deck[j + 1];
+                    deck[j + 1] = temp;
+                }
+    }
+
+    private void sortByRank() {
+        for (int i = 0; i < deck.length - 1; i++)
+            for (int j = 0; j < deck.length - 1; j++)
+                if (deck[j].nsuit == deck[j + 1].nsuit &&
+                        deck[j].nrank < deck[j + 1].nrank) {
+                    Card temp = deck[j];
+                    deck[j] = deck[j + 1];
+                    deck[j + 1] = temp;
+                }
     }
 
     public void remove(int nvalue) {
         int pos = -1;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < deck.length; i++)
             if (deck[i].nvalue == nvalue) {
                 pos = i;
                 break;
             }
         if (pos != -1) {
-            if (pos <= 12) {
-                --nend;
-                --eend;
-                --send;
-                --wend;
-            } else if (pos <= 25) {
-                --eend;
-                --send;
-                --wend;
-            } else if (pos <= 38) {
-                --send;
-                --wend;
-            } else --wend;
-            if (pos > 0) for (int i = pos + 1; i < size; i++)
+            if (pos > 0) for (int i = pos + 1; i < deck.length; i++)
                 deck[i - 1] = deck[i];
-            else for (int i = 1; i < size; i++)
+            else for (int i = 1; i < deck.length; i++)
                 deck[i - 1] = deck[i];
-            --size;
-            deck = resize (deck, size);
+            deck = resize (deck, deck.length - 1);
         } else System.out.println ("No card found that nvalue matches parameter");
     }
 
@@ -56,7 +73,7 @@ public class Deck {
     }
 
     private void Shuffle() {
-        for (int i = 51; i >= 1; --i) {
+        for (int i = deck.length - 1; i >= 1; --i) {
             int j = (int) (Math.random ( ) * 100 % i);
             Card temp = deck[i];
             deck[i] = deck[j];
@@ -65,7 +82,19 @@ public class Deck {
     }
 
     private void initDeck() {
+        deck = new Card[52];
         for (int i = 0; i < 52; i++) deck[i] = new Card (i);
+    }
+
+    private void initDeck(int ndirection, Deck parentDeck) {
+        deck = new Card[13];
+//        for (Card card :
+//                parentDeck.deck) {
+//            if (card.ndirection == ndirection) deck[it] = card;
+//            ++it;
+//        }
+        for (int i = 0, j = 0; i < parentDeck.deck.length; i++)
+            if (parentDeck.deck[i].ndirection == ndirection) deck[j++] = parentDeck.deck[i];
     }
 
     private void assignDirection() {
@@ -77,9 +106,9 @@ public class Deck {
         }
     }
 
-    private Card[] resize(Card deck[], int size) {
-        Card retDeck[] = new Card[size];
-        for (int i = 0; i < size; i++) retDeck[i] = deck[i];
+    private Card[] resize(Card deck[], int length) {
+        Card retDeck[] = new Card[length];
+        for (int i = 0; i < length; i++) retDeck[i] = deck[i];
         return retDeck;
     }
 }

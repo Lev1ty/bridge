@@ -29,7 +29,8 @@ public class BidStage {
     private void start(Stage stage, int ndirection,
                        String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         GridPane gridPane = new GridPane ( );
-        gridPane.getChildren ( ).addAll (getGridePane (stage, ndirection, 10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
+        gridPane.getChildren ( ).addAll (getGridePane (stage, ndirection,
+                10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
         Scene primaryScene = new Scene (gridPane);
         stage.setTitle ("Bid from " + sdirection);
         stage.setScene (primaryScene);

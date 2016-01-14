@@ -4,9 +4,9 @@ package logic;
  * Created by adamx on 1/8/2016.
  */
 public class Card {
-    final int nvalue;
-    int nsuit, nrank, ndirection;
-    String lssuit, ssuit, srank, sdirection;
+    public final int nvalue;
+    public int nsuit, nrank, ndirection;
+    public String lssuit, ssuit, srank, sdirection;
 
     private Card() {
 //        nindex = 0;

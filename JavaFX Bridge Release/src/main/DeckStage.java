@@ -1,71 +1,101 @@
 package main;
 
-import helpers.ConfirmBox;
+import helpers.AlertBox;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import logic.Card;
 import logic.Deck;
-import logic.ImageDeck;
-import logic.ImageWrapper;
 
 /**
  * Created by Adam on 1/7/2016.
  */
 public class DeckStage {
-    public static Deck deck = new Deck ( );
-    public Deck[] players;
 
     public DeckStage() {
         Stage stage = new Stage ( );
-        players = new Deck[4];
+        Scene scene = null;
+        Deck players[] = new Deck[4];
         for (int i = 0; i < 4; i++) players[i] = new Deck (i, new Deck ( ));
-        start (stage, players, 10);
-    }
+        Image images[] = new Image[52];
+        for (int i = 0; i < 52; i++) images[i] = getImage ( i + 1 );
+        start(stage, scene, images, players);
+}
 
-    private void start(Stage stage, Deck[] players,
-                       int padding) {
-        ImageDeck.initDeck ();
-//        for (ImageWrapper imageWrapper :
-//                ImageDeck.imageDeck) {
-//            HBox hBox = new HBox (imageWrapper.getImageView ( ));
-//            Group group = new Group (hBox);
-//            Scene scene = new Scene (group);
-//            Stage stage1 = new Stage ( );
-//            stage1.setScene (scene);
-//            stage1.show ( );
+    private void start(Stage stage, Scene scene,
+                       Image images[], Deck players[]){
+//        for (int i = 0; i < players.deck.length; i++) {
+//            HBox hBox = new HBox ( new ImageView ( images[players.deck[i].nvalue] ) );
+//            Scene scene = new Scene (hBox);
+//            Stage stage1 = new Stage();
+//            stage1.setScene ( scene );
+//            stage1.show ();
 //        }
-        BorderPane borderPane = new BorderPane (null, getRow (players[0], padding),
-                getColumn (players[1], padding), getRow (players[2], padding), getColumn (players[3], padding));
-        // TODO: 1/12/2016 Figure out operations with center
-        Scene primaryScene = new Scene (borderPane);
-        stage.setTitle ("Bridge");
-        stage.setScene (primaryScene);
-        stage.setResizable (true);
-        stage.setFullScreen (false);
-        stage.setFullScreenExitHint ("Bridge is now full screen. Exit full screen (ESC).");
-        stage.setOnCloseRequest (event -> {
-            event.consume ( );
-            if (ConfirmBox.display ("Confirm", "End Game Prematurely?")) stage.close ( );
-        });
-        stage.show ( );
+//        Scene scene = new Scene (getHBoxCards ( players,images ));
+//        Stage stage2 = new Stage();
+//        stage2.setScene ( scene );
+//        stage2.show ();
+        BorderPane borderPane = new BorderPane ();
+        HBox topCards = getHBoxCards ( players[0],images );
+        topCards.setAlignment ( Pos.CENTER );
+        VBox rightCards = getVBoxCards ( players[1],images,true );
+        rightCards.setAlignment ( Pos.CENTER );
+        HBox bottomCards = getHBoxCards ( players[2],images );
+        bottomCards.setAlignment ( Pos.CENTER );
+        VBox leftCards = getVBoxCards ( players[3],images,true );
+        leftCards.setAlignment ( Pos.CENTER );
+        Group rightGroup = new Group ( rightCards );
+        Group leftGroup = new Group ( leftCards );
+        borderPane.setTop(topCards);
+        borderPane.setRight ( rightGroup );
+        borderPane.setBottom ( bottomCards );
+        borderPane.setLeft ( leftGroup );
+        scene = new Scene ( borderPane );
+        stage.setScene ( scene );
+        stage.setMinHeight ( 500 );
+        stage.show ();
     }
 
-    private Group getColumn(Deck deck, int padding) {
-        VBox vBox = new VBox (padding, ImageDeck.getImageViewDeck (deck));
-//        VBox vBox = new VBox (padding);
-//        vBox.getChildren ( ).addAll (ImageDeck.getImageViewDeck (deck));
-        Group group = new Group (vBox);
-        return group;
+    private Image getImage(int nvalue) {
+        Image image = null;
+        try {
+            image = new Image ("cards\\" + nvalue + ".gif");
+        } catch (Exception e) {
+            AlertBox.display ("Error", "Image " + nvalue + " not found.");
+        }
+        return image;
     }
 
-    private Group getRow(Deck deck, int padding) {
-        HBox hBox = new HBox (padding, ImageDeck.getImageViewDeck (deck));
-        Group group = new Group (hBox);
-        return group;
+    private HBox getHBoxCards(Deck deck, Image[] images) {
+        HBox hBox = new HBox (-50);
+        for (Card card :
+                deck.deck) {
+            ImageView imageView =  new ImageView ( images[card.nvalue] );
+            imageView.setFitHeight ( 85 );
+            imageView.setPreserveRatio ( true );
+            hBox.getChildren ().add ( imageView );
+        }
+        return hBox;
+    }
+
+    private VBox getVBoxCards(Deck deck, Image[] images, boolean right) {
+        VBox vBox = new VBox (-50);
+        for (Card card :
+                deck.deck) {
+            ImageView imageView = new ImageView ( images[card.nvalue] );
+            imageView.setFitHeight ( 85 );
+            imageView.setPreserveRatio ( true );
+            if (right) imageView.setRotate ( 90 );
+            else imageView.setRotate ( -90 );
+            vBox.getChildren ().add ( imageView );
+        }
+        return vBox;
     }
 }

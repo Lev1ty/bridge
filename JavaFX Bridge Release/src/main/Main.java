@@ -2,8 +2,6 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import logic.Deck;
-import logic.ImageWrapper;
 
 public class Main extends Application {
     public static void main(String[] args) {

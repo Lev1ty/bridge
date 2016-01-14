@@ -9,7 +9,6 @@ public class Card {
     public String lssuit, ssuit, srank, sdirection;
 
     private Card() {
-//        nindex = 0;
         nvalue = 0;
         nsuit = 0;
         nrank = 0;

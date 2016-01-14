@@ -3,13 +3,12 @@ package main;
 import helpers.AlertBox;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 import logic.Card;
 import logic.Deck;
@@ -21,6 +20,7 @@ public class DeckStage {
 
     public DeckStage() {
         Stage stage = new Stage ( );
+        stage.setTitle ( "Bridge" );
         Scene scene = null;
         Deck players[] = new Deck[4];
         for (int i = 0; i < 4; i++) players[i] = new Deck (i, new Deck ( ));
@@ -43,23 +43,39 @@ public class DeckStage {
 //        stage2.setScene ( scene );
 //        stage2.show ();
         BorderPane borderPane = new BorderPane ();
-        HBox topCards = getHBoxCards ( players[0],images );
+        HBox topCards = getHBoxCards ( players[0],images,100 );
         topCards.setAlignment ( Pos.CENTER );
-        VBox rightCards = getVBoxCards ( players[1],images,true );
+        VBox rightCards = getVBoxCards ( players[1],images,true,100 );
         rightCards.setAlignment ( Pos.CENTER );
-        HBox bottomCards = getHBoxCards ( players[2],images );
+        HBox bottomCards = getHBoxCards ( players[2],images,100 );
         bottomCards.setAlignment ( Pos.CENTER );
-        VBox leftCards = getVBoxCards ( players[3],images,true );
+        VBox leftCards = getVBoxCards ( players[3],images,true,100 );
         leftCards.setAlignment ( Pos.CENTER );
         Group rightGroup = new Group ( rightCards );
         Group leftGroup = new Group ( leftCards );
-        borderPane.setTop(topCards);
-        borderPane.setRight ( rightGroup );
-        borderPane.setBottom ( bottomCards );
-        borderPane.setLeft ( leftGroup );
+        Group topGroup = new Group (topCards);
+        Group bottomGroup = new Group (bottomCards);
+        HBox alignTop = new HBox ( topGroup );
+        alignTop.setAlignment ( Pos.CENTER );
+        VBox alignRight = new VBox(rightGroup);
+        alignRight.setAlignment ( Pos.CENTER );
+        HBox alignBottom = new HBox(bottomGroup);
+        alignBottom.setAlignment ( Pos.CENTER );
+        alignBottom.setRotate ( 180 );
+        VBox alignLeft = new VBox ( leftGroup );
+        alignLeft.setRotate ( 180 );
+        alignLeft.setAlignment ( Pos.CENTER );
+        Box box = new Box();
+        box.setHeight ( 400 );
+        box.setWidth ( 400 );
+        borderPane.setCenter(box);
+        borderPane.setTop( alignTop );
+        borderPane.setRight ( alignRight );
+        borderPane.setBottom ( alignBottom );
+        borderPane.setLeft ( alignLeft );
         scene = new Scene ( borderPane );
         stage.setScene ( scene );
-        stage.setMinHeight ( 500 );
+        stage.setResizable ( false );
         stage.show ();
     }
 
@@ -73,28 +89,43 @@ public class DeckStage {
         return image;
     }
 
-    private HBox getHBoxCards(Deck deck, Image[] images) {
-        HBox hBox = new HBox (-50);
+    private void EventHandler(int nvalue) {
+        System.out.println (nvalue);
+    }
+
+    private StackPane getClickableImage(Image image, Card card, int height, int rotate) {
+        ImageView imageView = new ImageView ( image );
+        imageView.setPreserveRatio ( true );
+        imageView.setFitHeight ( height );
+        if (rotate!=0) imageView.setRotate ( rotate );
+        Button button = new Button (card.srank+card.ssuit);
+        button.setMinHeight ( height );
+        button.setMinWidth ( height*17/22 );
+        if (rotate!=0)button.setRotate ( rotate );
+        button.setOnAction ( event -> EventHandler ( card.nvalue ) );
+        StackPane stackPane = new StackPane (imageView,button);
+        return stackPane;
+    }
+
+    private HBox getHBoxCards(Deck deck, Image[] images,
+                              int height) {
+        HBox hBox = new HBox (-1*height);
         for (Card card :
                 deck.deck) {
-            ImageView imageView =  new ImageView ( images[card.nvalue] );
-            imageView.setFitHeight ( 85 );
-            imageView.setPreserveRatio ( true );
-            hBox.getChildren ().add ( imageView );
+            Image image = images[card.nvalue];
+            hBox.getChildren ().add ( getClickableImage ( image,card,height,0 ) );
         }
         return hBox;
     }
 
-    private VBox getVBoxCards(Deck deck, Image[] images, boolean right) {
-        VBox vBox = new VBox (-50);
+    private VBox getVBoxCards(Deck deck, Image[] images,
+                              boolean right, int height) {
+        VBox vBox = new VBox ( -1*height*17/14 );
         for (Card card :
                 deck.deck) {
-            ImageView imageView = new ImageView ( images[card.nvalue] );
-            imageView.setFitHeight ( 85 );
-            imageView.setPreserveRatio ( true );
-            if (right) imageView.setRotate ( 90 );
-            else imageView.setRotate ( -90 );
-            vBox.getChildren ().add ( imageView );
+            Image image = images[card.nvalue];
+            if (right) vBox.getChildren ().add ( getClickableImage ( image,card,height,90 ) );
+            else vBox.getChildren ().add ( getClickableImage ( image,card,height,-90 ) );
         }
         return vBox;
     }

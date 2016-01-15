@@ -23,12 +23,12 @@ public class DeckStage {
     private static Auction auction;
 
     public DeckStage(Deck players[], int revealDirection) {
-        start (players,revealDirection,0,2);
+        start (players,revealDirection,0,2,true);
     }
 
     public DeckStage(Deck players[], int currentDirection, int dummyDirection) {
         currentDirection %= 4;
-        start (players, currentDirection, currentDirection, dummyDirection);
+        start (players, currentDirection, currentDirection, dummyDirection, false);
     }
 
     public static void initDeckStage(Auction auction) {
@@ -58,23 +58,21 @@ public class DeckStage {
     }
 
     private void start(Deck players[], int revealDirection,
-                       int currentDirection, int dummyDirection) {
+                       int currentDirection, int dummyDirection,
+                       boolean simplyShow) {
         BorderPane borderPane = new BorderPane ( );
-        int temp = currentDirection; temp += 2;
-        HBox topCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, false,
-                temp==revealDirection?true:false);
+        int temp = currentDirection;
+        if (!simplyShow) temp += 2;
+        HBox topCards = getHBoxCards (dummyDirection, temp%=4, players, players[(temp %= 4)], images, 100, false, temp==revealDirection);
         ++temp;
         topCards.setAlignment (Pos.CENTER);
-        VBox rightCards = getVBoxCards (players[(temp %= 4)], images, true, 100,
-                temp==revealDirection?true:false,temp);
+        VBox rightCards = getVBoxCards (players[(temp %= 4)], images, true, 100, temp==revealDirection,temp%=4);
         ++temp;
         rightCards.setAlignment (Pos.CENTER);
-        HBox bottomCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, true,
-                temp==revealDirection?true:false);
+        HBox bottomCards = getHBoxCards (dummyDirection, temp%=4, players, players[(temp %= 4)], images, 100, true, temp==revealDirection);
         ++temp;
         bottomCards.setAlignment (Pos.CENTER);
-        VBox leftCards = getVBoxCards (players[(temp %= 4)], images, true, 100,
-                temp==revealDirection?true:false,temp);
+        VBox leftCards = getVBoxCards (players[(temp %= 4)], images, true, 100, temp==revealDirection,temp%=4);
         leftCards.setAlignment (Pos.CENTER);
         Group rightGroup = new Group (rightCards);
         Group leftGroup = new Group (leftCards);
@@ -123,8 +121,7 @@ public class DeckStage {
 
     private HBox getHBoxCards(int dummyDirection, int currentDirection, Deck players[],
                               Deck deck, Image[] images,
-                              int height, boolean clickable,
-                              boolean reveal) {
+                              int height, boolean clickable, boolean reveal) {
         HBox hBox = new HBox (-1 * height);
         if (reveal) if (clickable) {
             for (Card card :

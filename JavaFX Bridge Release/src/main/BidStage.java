@@ -77,7 +77,10 @@ public class BidStage {
             ++ndirection;
             ndirection %= 4;
             ++auction.nbid;
-            if ((auction.nbid == 4 && auction.npass == 4)||(auction.bcontract && auction.npass >= 3 && auction.nbid >= 4)) {
+            if ((auction.nbid == 4 && auction.npass == 4)){
+                stage.close ();
+            }
+            if (auction.bcontract && auction.npass >= 3 && auction.nbid >= 4) {
                 stage.close ( );
                 new DeckStage(decksDeckStage, auction.getContractBid ().ndirection + 1, auction.getContractBid ().ndirection + 2);
             } else {

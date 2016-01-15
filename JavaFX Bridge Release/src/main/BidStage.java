@@ -10,26 +10,32 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logic.Auction;
 import logic.Bid;
+import logic.Deck;
 
 /**
  * Created by Adam on 1/7/2016.
  */
 public class BidStage {
-    public static Auction auction = new Auction ( );
+    public static Auction auction;
 
-    public BidStage(String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
+    public BidStage(Deck[] decksDeckStage, String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         Stage stage = new Stage ( );
-        start (stage, Bid.sDirectiontonDirection (sdirection), sdirection, startLevel, endLevel, startSuit, endSuit);
+        start (decksDeckStage, stage, Bid.sDirectiontonDirection (sdirection), sdirection, startLevel, endLevel, startSuit, endSuit);
     }
 
-    public BidStage(int ndirection, int startLevel, int endLevel, int startSuit, int endSuit) {
-        new BidStage (Bid.nDirectiontosDirection (ndirection), startLevel, endLevel, startSuit, endSuit);
+    public BidStage(Deck[] decksDeckStage, int ndirection, int startLevel, int endLevel, int startSuit, int endSuit) {
+        new DeckStage(decksDeckStage,ndirection);
+        new BidStage (decksDeckStage, Bid.nDirectiontosDirection (ndirection), startLevel, endLevel, startSuit, endSuit);
     }
 
-    private void start(Stage stage, int ndirection,
+    public static void initAuction() {
+        auction = new Auction();
+    }
+
+    private void start(Deck[] decksDeckStage, Stage stage, int ndirection,
                        String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         GridPane gridPane = new GridPane ( );
-        gridPane.getChildren ( ).addAll (getGridePane (stage, ndirection,
+        gridPane.getChildren ( ).addAll (getGridePane (decksDeckStage,stage, ndirection,
                 10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
         Scene primaryScene = new Scene (gridPane);
         stage.setTitle ("Bid from " + sdirection);
@@ -61,7 +67,7 @@ public class BidStage {
 //        stage.show ( );
 //    }
 
-    private void eventHandler(Stage stage, int ndirection, String name) {
+    private void eventHandler(Deck[] decksDeckStage, Stage stage, int ndirection, String name) {
         Bid bid = new Bid (name, ndirection);
         if (ConfirmBox.display ("Confirm",
                 "Is " + bid.svalue + " your Final Bid?")) {
@@ -71,10 +77,9 @@ public class BidStage {
             ++ndirection;
             ndirection %= 4;
             ++auction.nbid;
-            if (auction.nbid == 4 && auction.npass == 4) {
+            if ((auction.nbid == 4 && auction.npass == 4)||(auction.bcontract && auction.npass >= 3 && auction.nbid >= 4)) {
                 stage.close ( );
-            } else if (auction.bcontract && auction.npass >= 3 && auction.nbid >= 4) {
-                stage.close ( );
+                new DeckStage(decksDeckStage, auction.getContractBid ().ndirection + 1, auction.getContractBid ().ndirection + 2);
             } else {
                 if (bid.nvalue >= 35) {
                     Bid lastCotnractBid = new Bid ( );
@@ -86,18 +91,18 @@ public class BidStage {
                             break;
                         }
                     if (found) {
-                        BidStage bidStage = new BidStage (ndirection, lastCotnractBid.nlevel + 1, 7, lastCotnractBid.nsuit + 1, 4);
+                        new BidStage (decksDeckStage,ndirection, lastCotnractBid.nlevel + 1, 7, lastCotnractBid.nsuit + 1, 4);
                     } else {
-                        BidStage bidStage = new BidStage (ndirection, 1, 7, 0, 4);
+                        new BidStage (decksDeckStage,ndirection, 1, 7, 0, 4);
                     }
                 } else {
-                    BidStage bidStage = new BidStage (ndirection, bid.nlevel + 1, 7, bid.nsuit + 1, 4);
+                    new BidStage (decksDeckStage,ndirection, bid.nlevel + 1, 7, bid.nsuit + 1, 4);
                 }
             }
         }
     }
 
-    private GridPane getGridePane(Stage stage, int ndirection,
+    private GridPane getGridePane(Deck[] decksDeckStage, Stage stage, int ndirection,
                                   int padding, int startLevel, int endLevel, int startSuit, int endSuit,
                                   int top, int right, int bottom, int left) {
         GridPane gridPane = new GridPane ( );
@@ -106,13 +111,13 @@ public class BidStage {
         auxBid[0] = new Button ("Pass");
         auxBid[0].setOnAction (event -> {
             ++auction.npass;
-            eventHandler (stage, ndirection, "Pass");
+            eventHandler (decksDeckStage,stage, ndirection, "Pass");
         });
         auxBid[1] = new Button ("Double");
         auxBid[1].setOnAction (event -> {
             auction.x = true;
             auction.npass = 0;
-            eventHandler (stage, ndirection, "Double");
+            eventHandler (decksDeckStage,stage, ndirection, "Double");
         });
         auxBid[2] = new Button ("Redouble");
         auxBid[2].setOnAction (event -> {
@@ -120,7 +125,7 @@ public class BidStage {
             else {
                 auction.xx = true;
                 auction.npass = 0;
-                eventHandler (stage, ndirection, "Redouble");
+                eventHandler (decksDeckStage,stage, ndirection, "Redouble");
             }
         });
         HBox hBoxArr[] = new HBox[endLevel - startLevel + 2];
@@ -156,7 +161,7 @@ public class BidStage {
             buttonFirstRow[j].setOnAction (event -> {
                 auction.npass = 0;
                 auction.bcontract = true;
-                eventHandler (stage, ndirection, finalName);
+                eventHandler (decksDeckStage,stage, ndirection, finalName);
             });
         }
         //endregion
@@ -166,7 +171,7 @@ public class BidStage {
             hBoxArr[1].getChildren ( ).addAll (buttonFirstRow);
             GridPane.setConstraints (hBoxArr[1], 0, 1);
             for (int i = startLevel + 1, j = 2; i <= endLevel; i++, j++) {
-                hBoxArr[j] = getBidRow (stage, ndirection, i, padding, top, right, bottom, left);
+                hBoxArr[j] = getBidRow (decksDeckStage,stage, ndirection, i, padding, top, right, bottom, left);
                 GridPane.setConstraints (hBoxArr[j], 0, j + 1);
             }
         }
@@ -174,7 +179,7 @@ public class BidStage {
         return gridPane;
     }
 
-    private HBox getBidRow(Stage stage, int ndirection,
+    private HBox getBidRow(Deck[] decksDeckStage, Stage stage, int ndirection,
                            int level, int padding,
                            int top, int right, int bottom, int left) {
         Button arr[] = new Button[5];
@@ -206,7 +211,7 @@ public class BidStage {
             arr[i].setOnAction (event -> {
                 auction.npass = 0;
                 auction.bcontract = true;
-                eventHandler (stage, ndirection, finalName);
+                eventHandler (decksDeckStage,stage, ndirection, finalName);
             });
         }
         hBox.getChildren ( ).addAll (arr);

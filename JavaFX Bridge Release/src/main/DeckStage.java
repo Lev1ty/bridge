@@ -5,10 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import logic.Auction;
 import logic.Card;
 import logic.Deck;
 
@@ -16,15 +18,21 @@ import logic.Deck;
  * Created by Adam on 1/7/2016.
  */
 public class DeckStage {
-    public static Stage stage = new Stage ( );
-    public static Image images[] = new Image[52];
+    private static Stage stage = new Stage ( );
+    private static Image images[] = new Image[52];
+    private static Auction auction;
+
+    public DeckStage(Deck players[], int revealDirection) {
+        start (players,revealDirection,0,2);
+    }
 
     public DeckStage(Deck players[], int currentDirection, int dummyDirection) {
         currentDirection %= 4;
-        start (players, currentDirection, dummyDirection);
+        start (players, currentDirection, currentDirection, dummyDirection);
     }
 
-    public static void initDeckStage() {
+    public static void initDeckStage(Auction auction) {
+        DeckStage.auction = auction;
         DeckStage.stage.setTitle ("Bridge");
         for (int i = 0; i < 52; i++) DeckStage.images[i] = DeckStage.getImage (i + 1);
     }
@@ -39,23 +47,34 @@ public class DeckStage {
         return image;
     }
 
-    private void start(Deck players[],
+    public static Image getImage(String svalue) {
+        Image image = null;
+        try {
+            image = new Image ("cards\\" + svalue + ".gif");
+        } catch (Exception e) {
+            AlertBox.display ("Error", "Image " + svalue + " not found.");
+        }
+        return image;
+    }
+
+    private void start(Deck players[], int revealDirection,
                        int currentDirection, int dummyDirection) {
-//        String directions[] = {"North", "East", "South", "West"};
-//        Label labels[] = new Label[4];
-//        for (int i = 0; i < 4; i++) labels[i] = new Label (directions[i]);
         BorderPane borderPane = new BorderPane ( );
         int temp = currentDirection; temp += 2;
-        HBox topCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, false);
+        HBox topCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, false,
+                temp==revealDirection?true:false);
         ++temp;
         topCards.setAlignment (Pos.CENTER);
-        VBox rightCards = getVBoxCards (players[(temp %= 4)], images, true, 100);
+        VBox rightCards = getVBoxCards (players[(temp %= 4)], images, true, 100,
+                temp==revealDirection?true:false,temp);
         ++temp;
         rightCards.setAlignment (Pos.CENTER);
-        HBox bottomCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, true);
+        HBox bottomCards = getHBoxCards (dummyDirection, currentDirection, players, players[(temp %= 4)], images, 100, true,
+                temp==revealDirection?true:false);
         ++temp;
         bottomCards.setAlignment (Pos.CENTER);
-        VBox leftCards = getVBoxCards (players[(temp %= 4)], images, true, 100);
+        VBox leftCards = getVBoxCards (players[(temp %= 4)], images, true, 100,
+                temp==revealDirection?true:false,temp);
         leftCards.setAlignment (Pos.CENTER);
         Group rightGroup = new Group (rightCards);
         Group leftGroup = new Group (leftCards);
@@ -90,7 +109,7 @@ public class DeckStage {
         new DeckStage (players, ++currentDirection, dummyDirection);
     }
 
-    private StackPane getClickableImage(int dummyDirection, int currentDirection, Deck players[], Image image, Card card, int height) {
+    private Button getClickableImage(int dummyDirection, int currentDirection, Deck players[], Image image, Card card, int height) {
         Button button = new Button ( );
         button.setMinSize (height * 17 / 22, height);
         BackgroundImage backgroundImage = new BackgroundImage (image,
@@ -99,14 +118,15 @@ public class DeckStage {
         Background background = new Background (backgroundImage);
         button.setBackground (background);
         button.setOnAction (event -> EventHandler (dummyDirection, currentDirection, players, card));
-        return new StackPane (button);
+        return button;
     }
 
     private HBox getHBoxCards(int dummyDirection, int currentDirection, Deck players[],
                               Deck deck, Image[] images,
-                              int height, boolean clickable) {
+                              int height, boolean clickable,
+                              boolean reveal) {
         HBox hBox = new HBox (-1 * height);
-        if (clickable) {
+        if (reveal) if (clickable) {
             for (Card card :
                     deck.deck) {
                 Image image = images[card.nvalue];
@@ -122,13 +142,19 @@ public class DeckStage {
                 hBox.getChildren ( ).add (imageView);
             }
         }
+        else for (int i = 0; i < deck.deck.length; i++) {
+            ImageView imageView = new ImageView ( getImage ( "B" ) );
+            hBox.getChildren().add(imageView);
+        }
+        hBox.getChildren ().add ( 0,new Label (String.valueOf ( currentDirection )) );
         return hBox;
     }
 
     private VBox getVBoxCards(Deck deck, Image[] images,
-                              boolean right, int height) {
+                              boolean right, int height,
+                              boolean reveal, int currentDirection) {
         VBox vBox = new VBox (-1 * height * 17 / 14);
-        for (Card card :
+        if (reveal) for (Card card :
                 deck.deck) {
             Image image = images[card.nvalue];
             ImageView imageView = new ImageView (image);
@@ -136,6 +162,13 @@ public class DeckStage {
             else imageView.setRotate (-90);
             vBox.getChildren ( ).add (imageView);
         }
+        else for (int i = 0; i < deck.deck.length; i++) {
+            ImageView imageView = new ImageView ( getImage ( "B" ) );
+            if (right) imageView.setRotate (90);
+            else imageView.setRotate (-90);
+            vBox.getChildren().add(imageView);
+        }
+        vBox.getChildren ().add ( 0,new Label (String.valueOf ( currentDirection )) );
         return vBox;
     }
 }

@@ -7,15 +7,12 @@ public class Bid {
     // TODO: 1/5/2016 Make bid then make auction wrapper for bid
     public int nvalue, ndirection, nlevel, nsuit;
     public String slevel, ssuit, sdirection, svalue;
-    public boolean x, xx;
 
     public Bid() {
         nvalue = 0;
         nlevel = 0;
         nsuit = 0;
         ndirection = 0;
-        x = false;
-        xx = false;
     }
 
     public Bid(int nvalue, int ndirection) {

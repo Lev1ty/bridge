@@ -37,7 +37,7 @@ public class BidStage {
     private void start(DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection,
                        String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         GridPane gridPane = new GridPane ( );
-        gridPane.getChildren ( ).addAll (getGridePane (deckStage,decksDeckStage, stage, ndirection,
+        gridPane.getChildren ( ).addAll (getGridePane (deckStage, decksDeckStage, stage, ndirection,
                 10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
         Scene primaryScene = new Scene (gridPane);
         stage.setTitle ("Bid from " + sdirection);
@@ -62,13 +62,13 @@ public class BidStage {
             ++auction.nbid;
             if ((auction.nbid == 4 && auction.npass == 4)) {
                 stage.close ( );
-                deckStage.stage.close ();
-                AlertBox.display ("Auction","Auction Passed Out.");
+                DeckStage.stage.close ( );
+                AlertBox.display ("Auction", "Auction Passed Out.");
             } else if (auction.bcontract && auction.npass >= 3 && auction.nbid >= 4) {
                 stage.close ( );
-                deckStage.stage.close ();
+                DeckStage.stage.close ( );
                 new DeckStage (decksDeckStage, auction.getContractBid ( ).ndirection + 1,
-                        auction.getContractBid ( ).ndirection + 2, auction.getContractBid ());
+                        auction.getContractBid ( ).ndirection + 2, auction.getContractBid ( ));
             } else {
                 if (bid.nvalue >= 35) {
                     Bid lastContractBid = new Bid ( );
@@ -100,13 +100,13 @@ public class BidStage {
         auxBid[0] = new Button ("Pass");
         auxBid[0].setOnAction (event -> {
             ++auction.npass;
-            eventHandler (deckStage,decksDeckStage, stage, ndirection, "Pass");
+            eventHandler (deckStage, decksDeckStage, stage, ndirection, "Pass");
         });
         auxBid[1] = new Button ("Double");
         auxBid[1].setOnAction (event -> {
             auction.x = true;
             auction.npass = 0;
-            eventHandler (deckStage,decksDeckStage, stage, ndirection, "Double");
+            eventHandler (deckStage, decksDeckStage, stage, ndirection, "Double");
         });
         auxBid[2] = new Button ("Redouble");
         auxBid[2].setOnAction (event -> {
@@ -114,7 +114,7 @@ public class BidStage {
             else {
                 auction.xx = true;
                 auction.npass = 0;
-                eventHandler (deckStage,decksDeckStage, stage, ndirection, "Redouble");
+                eventHandler (deckStage, decksDeckStage, stage, ndirection, "Redouble");
             }
         });
         HBox hBoxArr[] = new HBox[endLevel - startLevel + 2];
@@ -160,7 +160,7 @@ public class BidStage {
             hBoxArr[1].getChildren ( ).addAll (buttonFirstRow);
             GridPane.setConstraints (hBoxArr[1], 0, 1);
             for (int i = startLevel + 1, j = 2; i <= endLevel; i++, j++) {
-                hBoxArr[j] = getBidRow (deckStage,decksDeckStage, stage, ndirection, i, padding, top, right, bottom, left);
+                hBoxArr[j] = getBidRow (deckStage, decksDeckStage, stage, ndirection, i, padding, top, right, bottom, left);
                 GridPane.setConstraints (hBoxArr[j], 0, j + 1);
             }
         }

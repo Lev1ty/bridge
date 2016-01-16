@@ -24,7 +24,7 @@ public class Auction {
         for (int i = auction.size ( ) - 1; i >= 0; --i)
             if (auction.get (i).nvalue < 35) nvalue = auction.get (i).nvalue;
         if (nvalue > -1)
-            for (int i = 0; i < auction.size ( ); ++i) if (auction.get (i).nvalue == nvalue) return auction.get (i);
+            for (Bid anAuction : auction) if (anAuction.nvalue == nvalue) return anAuction;
         return new Bid ( );
     }
 
@@ -33,9 +33,7 @@ public class Auction {
     }
 
     public void printAuction() {
-        for (Bid b :
-                auction)
-            b.Print ( );
+        auction.forEach (Bid::Print);
     }
 
     public void printField() {

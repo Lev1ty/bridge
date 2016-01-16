@@ -127,9 +127,17 @@ public class Bid {
         this.svalue = svalue;
         int nlevel = 0, nsuit = 0;
         if (svalue.length ( ) > 3) {
-            if (svalue.equals ("Pass")) nsuit = 35;
-            else if (svalue.equals ("Double")) nsuit = 36;
-            else if (svalue.equals ("Redouble")) nsuit = 37;
+            switch (svalue) {
+                case "Pass":
+                    nsuit = 35;
+                    break;
+                case "Double":
+                    nsuit = 36;
+                    break;
+                case "Redouble":
+                    nsuit = 37;
+                    break;
+            }
         } else {
             nlevel = svalue.charAt (0) - '1';
             switch (svalue.charAt (1)) {

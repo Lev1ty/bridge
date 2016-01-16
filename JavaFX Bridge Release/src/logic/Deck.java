@@ -18,6 +18,45 @@ public class Deck {
         sortByRank ( );
     }
 
+    public static Deck[] seperateBySuit(Deck masterDeck) {
+        Deck deck[] = new Deck[4];
+        for (int i = 0; i < 4; i++) {
+            deck[i] = new Deck ( );
+            deck[i].deck = deck[i].resize (deck[i].deck, 0);
+        }
+        for (int i = 0; i < 4; ++i)
+            for (int j = 0; j < masterDeck.deck.length; ++j)
+                if (masterDeck.deck[j].nsuit == i) deck[i].push_back (masterDeck.deck[j]);
+        return deck;
+    }
+
+    public void push_back(Card card) {
+        deck = resize (deck, deck.length + 1);
+        deck[deck.length - 1] = card;
+    }
+
+    public void remove(int nvalue) {
+        int pos = -1;
+        for (int i = 0; i < deck.length; i++)
+            if (deck[i].nvalue == nvalue) {
+                pos = i;
+                break;
+            }
+        if (pos != -1) {
+            if (pos > 0) for (int i = pos + 1; i < deck.length; i++)
+                deck[i - 1] = deck[i];
+            else for (int i = 1; i < deck.length; i++)
+                deck[i - 1] = deck[i];
+            deck = resize (deck, deck.length - 1);
+        } else System.out.println ("No card found that nvalue matches parameter");
+    }
+
+    public void printDeck() {
+        for (Card c :
+                deck)
+            c.Print ( );
+    }
+
     private void sortBySuit() {
 //        for (int i = 0; i < size; i++) {
 //            int lowPos = i;
@@ -48,28 +87,6 @@ public class Deck {
                     deck[j] = deck[j + 1];
                     deck[j + 1] = temp;
                 }
-    }
-
-    public void remove(int nvalue) {
-        int pos = -1;
-        for (int i = 0; i < deck.length; i++)
-            if (deck[i].nvalue == nvalue) {
-                pos = i;
-                break;
-            }
-        if (pos != -1) {
-            if (pos > 0) for (int i = pos + 1; i < deck.length; i++)
-                deck[i - 1] = deck[i];
-            else for (int i = 1; i < deck.length; i++)
-                deck[i - 1] = deck[i];
-            deck = resize (deck, deck.length - 1);
-        } else System.out.println ("No card found that nvalue matches parameter");
-    }
-
-    public void printDeck() {
-        for (Card c :
-                deck)
-            c.Print ( );
     }
 
     private void Shuffle() {
@@ -108,7 +125,7 @@ public class Deck {
 
     private Card[] resize(Card deck[], int length) {
         Card retDeck[] = new Card[length];
-        for (int i = 0; i < length; i++) retDeck[i] = deck[i];
+        for (int i = 0; i < (length >= deck.length ? deck.length : length); i++) retDeck[i] = deck[i];
         return retDeck;
     }
 }

@@ -66,6 +66,29 @@ public class Bid {
         return sdirection;
     }
 
+    public static String nDirectiontolsDirection(int ndirection) {
+        String sdirection = "Error";
+        if (ndirection >= 0 && ndirection <= 3) switch (ndirection) {
+            case 0:
+                sdirection = "North";
+                break;
+            case 1:
+                sdirection = "East";
+                break;
+            case 2:
+                sdirection = "South";
+                break;
+            case 3:
+                sdirection = "West";
+                break;
+            default:
+                assert (ndirection >= 0 && ndirection <= 3);
+                break;
+        }
+        else System.out.println ("Range error at class Bid in nDirectiontolsDirection.");
+        return sdirection;
+    }
+
     public static int sDirectiontonDirection(String sdirection) {
         int ndirection = -1;
         switch (sdirection.charAt (0)) {

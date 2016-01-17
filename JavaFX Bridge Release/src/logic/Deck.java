@@ -19,14 +19,47 @@ public class Deck {
     }
 
     public static Deck[] seperateBySuit(Deck masterDeck) {
+//        Deck deck[] = new Deck[5];
+//        for (int i = 0; i < 5; i++) {
+//            deck[i] = new Deck ( );
+//            deck[i].deck = deck[i].resize (deck[i].deck, 0);
+//        }
+//        for (int i = 1; i <= 4; ++i)
+//            for (int j = 0; j < masterDeck.deck.length; ++j)
+//                if (masterDeck.deck[j].nsuit == i - 1) deck[i].push_back (masterDeck.deck[j]);
+//        if (bid.nsuit >= 0 && bid.nsuit <= 3) {
+//            deck[0] = deck[bid.nsuit];
+//            for (int i = bid.nsuit + 1; i < 5; i++) deck[i - 1] = deck[i];
+//        } else for (int i = 0; i < 4; i++) deck[i] = deck[i + 1];
+//        Deck retDeck[] = new Deck[4];
+//        for (int i = 0; i < 4; i++) retDeck[i] = deck[i];
+//        return retDeck;
         Deck deck[] = new Deck[4];
         for (int i = 0; i < 4; i++) {
             deck[i] = new Deck ( );
-            deck[i].deck = deck[i].resize (deck[i].deck, 0);
+            deck[i].deck = new Card[0];
         }
-        for (int i = 0; i < 4; ++i)
-            for (int j = 0; j < masterDeck.deck.length; ++j)
-                if (masterDeck.deck[j].nsuit == i) deck[i].push_back (masterDeck.deck[j]);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < masterDeck.deck.length; j++) {
+                if (masterDeck.deck[j].prioritysuit == i) deck[i].push_back (masterDeck.deck[j]);
+            }
+        }
+        return deck;
+    }
+
+    public static Card[] sortBySuit(Card deck[]) {
+        try {
+            for (int i = 0; i < deck.length - 1; i++)
+                for (int j = 0; j < deck.length - 1; j++) {
+                    if (deck[j].prioritysuit > deck[j + 1].prioritysuit) {
+                        Card temp = deck[j];
+                        deck[j] = deck[j + 1];
+                        deck[j + 1] = temp;
+                    }
+                }
+        } catch (Exception e) {
+            System.out.println ("sortbysuit exception");
+        }
         return deck;
     }
 
@@ -35,20 +68,23 @@ public class Deck {
         deck[deck.length - 1] = card;
     }
 
-    public void remove(int nvalue) {
+    public Card remove(int nvalue) {
         int pos = -1;
+        Card card = null;
         for (int i = 0; i < deck.length; i++)
             if (deck[i].nvalue == nvalue) {
                 pos = i;
                 break;
             }
         if (pos != -1) {
+            card = deck[pos];
             if (pos > 0) for (int i = pos + 1; i < deck.length; i++)
                 deck[i - 1] = deck[i];
             else for (int i = 1; i < deck.length; i++)
                 deck[i - 1] = deck[i];
             deck = resize (deck, deck.length - 1);
         } else System.out.println ("No card found that nvalue matches parameter");
+        return card;
     }
 
     public void printDeck() {

@@ -4,8 +4,7 @@ package logic;
  * Created by adamx on 1/8/2016.
  */
 public class Card {
-    public final int nvalue;
-    public int nsuit, nrank, ndirection;
+    public int nvalue, nsuit, nrank, ndirection, prioritysuit;
     public String lssuit, ssuit, srank, sdirection;
 
     private Card() {
@@ -50,6 +49,15 @@ public class Card {
         else System.out.println("Range error at class Card nIndex.");
     }*/
 //</editor-fold>
+    public void nSuittoprioritySuit(int bidsuit) {
+        if (bidsuit >= 0 && bidsuit <= 3) {
+            bidsuit = 3 - bidsuit;
+            if (nsuit == bidsuit) prioritysuit = 0;
+            else if (nsuit > bidsuit) prioritysuit = nsuit - 1;
+            else if (nsuit < bidsuit) prioritysuit = nsuit + 1;
+        }
+    }
+
     private void nValuetonSuitRank() {
         nValuetonSuit ( );
         nValuetonRank ( );

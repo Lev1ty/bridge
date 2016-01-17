@@ -43,6 +43,7 @@ public class ConfirmBox {
         layout.setAlignment (Pos.CENTER);
         Scene scene = new Scene (layout);
         window.setScene (scene);
+        window.setOnCloseRequest (event -> answer = false);
         window.showAndWait ( );
 
         return answer;

@@ -15,9 +15,8 @@ public class Main extends Application {
         Deck masterDeck = new Deck ( );
         Deck players[] = new Deck[4];
         for (int i = 0; i < 4; i++) players[i] = new Deck (i, masterDeck);
-        DeckStage.initDeckStage ( );
-        DeckStage.show = true;
-        BidStage.initAuction ( );
+        new DeckStage ( );
+        new BidStage ( );
         Stage stage = new Stage ( );
         stage.setOpacity (0.75);
         BidStage bidStage = new BidStage (masterDeck, players, stage, rngdir1, 1, 7, 0, 4);

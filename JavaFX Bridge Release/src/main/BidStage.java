@@ -19,6 +19,10 @@ public class BidStage {
     public static Auction auction;
     private static boolean show;
 
+    public BidStage() {
+        initAuction ( );
+    }
+
     public BidStage(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, String sdirection,
                     int startLevel, int endLevel, int startSuit, int endSuit) {
         start (masterDeck, deckStage, decksDeckStage, stage, Bid.sDirectiontonDirection (sdirection), sdirection, startLevel, endLevel, startSuit, endSuit);
@@ -27,7 +31,7 @@ public class BidStage {
 
     public BidStage(Deck masterDeck, Deck[] decksDeckStage, Stage stage, int ndirection,
                     int startLevel, int endLevel, int startSuit, int endSuit) {
-        new BidStage (masterDeck, new DeckStage (decksDeckStage, ndirection, true), decksDeckStage, stage,
+        new BidStage (masterDeck, new DeckStage (decksDeckStage, ndirection, true, true), decksDeckStage, stage,
                 Bid.nDirectiontosDirection (ndirection), startLevel, endLevel, startSuit, endSuit);
         BidStage.show = false;
         DeckStage.show = false;
@@ -38,8 +42,8 @@ public class BidStage {
         auction = new Auction ( );
     }
 
-    private void start(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection,
-                       String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
+    private static void start(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection,
+                              String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         GridPane gridPane = new GridPane ( );
         gridPane.getChildren ( ).addAll (getGridePane (masterDeck, deckStage, decksDeckStage, stage, ndirection,
                 10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
@@ -56,7 +60,7 @@ public class BidStage {
         }
     }
 
-    private void eventHandler(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection, String name) {
+    private static void eventHandler(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection, String name) {
         Bid bid = new Bid (name, ndirection);
         if (ConfirmBox.display ("Confirm",
                 "Is " + bid.svalue + " your Final Bid?")) {
@@ -72,9 +76,9 @@ public class BidStage {
                 stage.close ( );
                 DeckStage.stage.close ( );
                 DeckStage.show = true;
-                DeckStage.hidedummy = true;
+                DeckStage.initDeckStage ();
                 new DeckStage (decksDeckStage, auction.getContractBid ( ).ndirection + 1,
-                        auction.getContractBid ( ).ndirection + 2, auction.getContractBid ( ));
+                        auction.getContractBid ( ).ndirection + 2, auction.getContractBid ( ), false);
             } else {
                 if (bid.nvalue >= 35) {
                     Bid lastContractBid = new Bid ( );
@@ -97,9 +101,9 @@ public class BidStage {
         }
     }
 
-    private GridPane getGridePane(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection,
-                                  int padding, int startLevel, int endLevel, int startSuit, int endSuit,
-                                  int top, int right, int bottom, int left) {
+    private static GridPane getGridePane(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, int ndirection,
+                                         int padding, int startLevel, int endLevel, int startSuit, int endSuit,
+                                         int top, int right, int bottom, int left) {
         GridPane gridPane = new GridPane ( );
         gridPane.setPadding (new Insets (top, right, bottom, left));
         Button auxBid[] = new Button[3];
@@ -175,9 +179,9 @@ public class BidStage {
         return gridPane;
     }
 
-    private HBox getBidRow(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage,
-                           Stage stage, int ndirection, int level, int padding,
-                           int top, int right, int bottom, int left) {
+    private static HBox getBidRow(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage,
+                                  Stage stage, int ndirection, int level, int padding,
+                                  int top, int right, int bottom, int left) {
         Button arr[] = new Button[5];
         HBox hBox = new HBox (padding);
         hBox.setPadding (new Insets (top, right, bottom, left));

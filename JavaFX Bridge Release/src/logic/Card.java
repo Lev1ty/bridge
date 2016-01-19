@@ -7,7 +7,7 @@ public class Card {
     public int nvalue, nsuit, nrank, ndirection, prioritysuit;
     public String lssuit, ssuit, srank, sdirection;
 
-    private Card() {
+    public Card() {
         nvalue = 0;
         nsuit = 0;
         nrank = 0;

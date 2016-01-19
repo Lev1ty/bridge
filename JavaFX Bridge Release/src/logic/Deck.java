@@ -1,18 +1,23 @@
 package logic;
 
+import java.lang.reflect.Array;
+
 /**
  * Created by adamx on 1/8/2016.
  */
 public class Deck {
     public Card deck[];
+    public int iterator;
 
     public Deck() {
+        iterator = 0;
         initDeck ( );
         Shuffle ( );
         assignDirection ( );
     }
 
     public Deck(int ndirection, Deck parentDeck) {
+        iterator = 0;
         initDeck (ndirection, parentDeck);
         sortBySuit ( );
         sortByRank ( );
@@ -61,6 +66,12 @@ public class Deck {
             System.out.println ("sortbysuit exception");
         }
         return deck;
+    }
+
+    public static Card[] resize(Card deck[], int length) {
+        Card retDeck[] = new Card[length];
+        for (int i = 0; i < (length >= deck.length ? deck.length : length); i++) retDeck[i] = deck[i];
+        return retDeck;
     }
 
     public void push_back(Card card) {
@@ -157,11 +168,5 @@ public class Deck {
             c.nDirection (dir);
             if (++itCnt % 13 == 0) ++dir;
         }
-    }
-
-    private Card[] resize(Card deck[], int length) {
-        Card retDeck[] = new Card[length];
-        for (int i = 0; i < (length >= deck.length ? deck.length : length); i++) retDeck[i] = deck[i];
-        return retDeck;
     }
 }

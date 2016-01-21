@@ -76,7 +76,7 @@ public class BidStage {
                 stage.close ( );
                 DeckStage.stage.close ( );
                 DeckStage.show = true;
-                DeckStage.initDeckStage ();
+                DeckStage.initDeckStage ( );
                 new DeckStage (decksDeckStage, auction.getContractBid ( ).ndirection + 1,
                         auction.getContractBid ( ).ndirection + 2, auction.getContractBid ( ), false);
             } else {

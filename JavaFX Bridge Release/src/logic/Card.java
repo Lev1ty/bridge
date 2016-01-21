@@ -55,7 +55,7 @@ public class Card {
             if (nsuit == bidsuit) prioritysuit = 0;
             else if (nsuit > bidsuit) prioritysuit = nsuit - 1;
             else if (nsuit < bidsuit) prioritysuit = nsuit + 1;
-        }
+        } else System.out.println ("Range error in nSuittoprioritySuit.");
     }
 
     private void nValuetonSuitRank() {

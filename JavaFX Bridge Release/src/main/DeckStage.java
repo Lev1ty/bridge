@@ -176,9 +176,9 @@ public class DeckStage {
             if (gridPaneCenter.getChildren ().size () == 4) {
                 winningTricks.push_back (
                         compare ( deckHistory.deck[deckHistory.deck.length - 1],
-                        deckHistory.deck[deckHistory.deck.length - 2],
-                        deckHistory.deck[deckHistory.deck.length - 3],
-                        deckHistory.deck[deckHistory.deck.length - 4] )
+                                deckHistory.deck[deckHistory.deck.length - 2],
+                                deckHistory.deck[deckHistory.deck.length - 3],
+                                deckHistory.deck[deckHistory.deck.length - 4] )
                 );
             }
         } else {
@@ -226,7 +226,10 @@ public class DeckStage {
 
     private static Card compare(Card... cards) {
         Card maxCard = new Card ();
-        for (Card card : cards) if (card.nvalue > maxCard.nvalue) maxCard = card;
+        maxCard.prioritysuit = 3;
+        maxCard.nrank = 0;
+        for (Card card : cards)
+        if (card.prioritysuit <= maxCard.prioritysuit && card.nrank >= maxCard.nrank) maxCard = card;
         return maxCard;
     }
 

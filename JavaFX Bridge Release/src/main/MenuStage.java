@@ -25,18 +25,21 @@ public class MenuStage {
     public static int display() {
         gridPane.setBackground (new Background (new BackgroundImage (backgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-        gridPane.setPadding (new Insets (125, 200, 200, 150));
+        gridPane.setPadding (new Insets (50, 200, 200, 150));
         Label title = new Label ("Bridge");
         int row = 0, col = 0;
         gridPane.add (title, row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
         gridPane.add (getButton ("Start Bridge", getButton ( )), row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
+        gridPane.add (getButton ("Instructions", getButton ()), row, col++);
+        gridPane.add (getButton (0, getButton ( )), row, col++);
         gridPane.add (getButton ("Exit", getButton ( )), row, col);
         stage.setTitle ("Menu");
         stage.setScene (scene);
         stage.setResizable (false);
         stage.showAndWait ( );
+        stage.setOnCloseRequest ( event -> result = 1 );
         return result;
     }
 

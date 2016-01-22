@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import logic.Bid;
+import logic.BridgeScore;
 import logic.Card;
 import logic.Deck;
 
@@ -188,7 +189,15 @@ public class DeckStage {
             }
             if (isPlayersEmpty (players)) {
                 stage.close ();
-                Main.body ();
+                winningTricks.printDeck ();
+                int tricks = getWinningTricksbyDirection ();
+                System.out.println ( tricks);
+                contractBid.Print ();
+//                System.out.println ( BridgeScore.calculateScore ( contractBid.nlevel,contractBid.nsuit,
+//                        contractBid.x,contractBid.xx,(tricks-6)>=contractBid.nlevel,
+//                        tricks));
+                ScoreStage.display ( BridgeScore.calculateScore ( contractBid.nlevel,contractBid.nsuit,
+                        contractBid.x,contractBid.xx,(tricks-6)>=(contractBid.nlevel + 1), tricks), contractBid );
             }
             if (gridPaneCenter.getChildren ( ).size ( ) < 4)
                 new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
@@ -196,6 +205,13 @@ public class DeckStage {
             AlertBox.display ("Illegal Move", card.lssuit + " does not follow suit " + "(" +
                     deckHistory.deck[(deckHistory.deck.length / 4) * 4].lssuit + ").");
         }
+    }
+
+    private static int getWinningTricksbyDirection() {
+        int dir[]=  new int[4];
+        for (int i = 0; i < dir.length; i++) dir[i] = 0;
+        for (Card card:winningTricks.deck) ++dir[card.ndirection];
+        return dir[contractBid.ndirection] + dir[(contractBid.ndirection+2)%4];
     }
 
     private static boolean isLegalMove(Deck players[], Card card) {

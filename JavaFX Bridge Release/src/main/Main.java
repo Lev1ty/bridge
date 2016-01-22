@@ -2,6 +2,7 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.BridgeScore;
 import logic.Deck;
 
 public class Main extends Application {
@@ -11,10 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        body(); // code extracted to [body] for recursion purposes in DeckStage
-    }
-
-    public static void body() {
+//        ScoreStage.display ( BridgeScore.calculateScore ( 2,3,true,true,true,13 ) );
+//        body(); // code extracted to [body] for recursion purposes in DeckStage
         switch (MenuStage.display ( )) {
             case 2: {
                 int rngdir1 = (int) (Math.random ( ) * 100 % 4);

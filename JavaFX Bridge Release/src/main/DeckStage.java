@@ -179,7 +179,6 @@ public class DeckStage {
                             deckHistory.deck[deckHistory.deck.length - 3],
                             deckHistory.deck[deckHistory.deck.length - 4]);
                     winningTricks.push_back (winner);
-                    winner.Print ( );
                     new DeckStage (players, winner.ndirection, dummyDirection, contractBid, true);
                 }
             } else {
@@ -188,12 +187,14 @@ public class DeckStage {
                         getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
             }
             if (isPlayersEmpty (players)) {
-                // TODO: 1/18/2016 start scoring phase
+                stage.close ();
+                Main.body ();
             }
             if (gridPaneCenter.getChildren ( ).size ( ) < 4)
                 new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
         } else {
-            AlertBox.display ("Illegal Move", card.lssuit + " does not trump or follow suit.");
+            AlertBox.display ("Illegal Move", card.lssuit + " does not follow suit " + "(" +
+                    deckHistory.deck[(deckHistory.deck.length / 4) * 4].lssuit + ").");
         }
     }
 

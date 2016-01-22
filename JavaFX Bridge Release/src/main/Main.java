@@ -11,14 +11,25 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int rngdir1 = (int) (Math.random ( ) * 100 % 4);
-        Deck masterDeck = new Deck ( );
-        Deck players[] = new Deck[4];
-        for (int i = 0; i < 4; i++) players[i] = new Deck (i, masterDeck);
-        new DeckStage ( );
-        new BidStage ( );
-        Stage stage = new Stage ( );
-        stage.setOpacity (0.75);
-        BidStage bidStage = new BidStage (masterDeck, players, stage, rngdir1, 1, 7, 0, 4);
+        body(); // code extracted to [body] for recursion purposes in DeckStage
+    }
+
+    public static void body() {
+        switch (MenuStage.display ( )) {
+            case 2: {
+                int rngdir1 = (int) (Math.random ( ) * 100 % 4);
+                Deck masterDeck = new Deck ( );
+                Deck players[] = new Deck[4];
+                for (int i = 0; i < 4; i++) players[i] = new Deck (i, masterDeck);
+                new DeckStage ( );
+                new BidStage ( );
+                Stage stage = new Stage ( );
+                stage.setOpacity (0.75);
+                BidStage bidStage = new BidStage (masterDeck, players, stage, rngdir1, 1, 7, 0, 4);
+                break;
+            }
+            default:
+                break;
+        }
     }
 }

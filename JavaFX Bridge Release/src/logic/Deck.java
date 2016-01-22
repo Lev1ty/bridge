@@ -5,17 +5,14 @@ package logic;
  */
 public class Deck {
     public Card deck[];
-    public int iterator;
 
     public Deck() {
-        iterator = 0;
         initDeck ( );
         Shuffle ( );
         assignDirection ( );
     }
 
     public Deck(int ndirection, Deck parentDeck) {
-        iterator = 0;
         initDeck (ndirection, parentDeck);
         sortBySuit ( );
         sortByRank ( );
@@ -44,7 +41,9 @@ public class Deck {
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < masterDeck.deck.length; j++) {
-                if (masterDeck.deck[j].prioritysuit == i) deck[i].push_back (masterDeck.deck[j]);
+                if (masterDeck.deck[j].prioritysuit == i) {
+                    deck[i].push_back (masterDeck.deck[j]);
+                }
             }
         }
         return deck;
@@ -52,7 +51,7 @@ public class Deck {
 
     public static Card[] sortBySuit(Card deck[]) {
         try {
-            for (int i = 0; i < deck.length - 1; i++)
+            for (int i = 0; i < deck.length - 1; i++) {
                 for (int j = 0; j < deck.length - 1; j++) {
                     if (deck[j].prioritysuit > deck[j + 1].prioritysuit) {
                         Card temp = deck[j];
@@ -60,6 +59,7 @@ public class Deck {
                         deck[j + 1] = temp;
                     }
                 }
+            }
         } catch (Exception e) {
             System.out.println ("sortbysuit exception");
         }
@@ -70,6 +70,13 @@ public class Deck {
         Card retDeck[] = new Card[length];
         for (int i = 0; i < (length >= deck.length ? deck.length : length); i++) retDeck[i] = deck[i];
         return retDeck;
+    }
+
+    public static boolean isThereSuit(Deck deck, int nsuit) {
+        for (Card card :
+                deck.deck)
+            if (card.nsuit == nsuit) return true;
+        return false;
     }
 
     public void push_back(Card card) {

@@ -39,7 +39,8 @@ public class Card {
                         " ssuit: " + ssuit +
                         " srank: " + srank +
                         " lssuit: " + lssuit +
-                        " sdirection: " + sdirection
+                        " sdirection: " + sdirection +
+                        " prioritysuit: " + prioritysuit
         );
     }
 
@@ -50,12 +51,13 @@ public class Card {
     }*/
 //</editor-fold>
     public void nSuittoprioritySuit(int bidsuit) {
-        if (bidsuit >= 0 && bidsuit <= 3) {
-            bidsuit = 3 - bidsuit;
+        bidsuit = 3 - bidsuit;
+        if (bidsuit == -1) prioritysuit = nsuit;
+        else if (bidsuit >= 0 && bidsuit <= 3) {
             if (nsuit == bidsuit) prioritysuit = 0;
             else if (nsuit > bidsuit) prioritysuit = nsuit - 1;
             else if (nsuit < bidsuit) prioritysuit = nsuit + 1;
-        } else System.out.println ("Range error in nSuittoprioritySuit.");
+        } else System.out.println ("Range error at class Card nSuittoprioritySuit.");
     }
 
     private void nValuetonSuitRank() {

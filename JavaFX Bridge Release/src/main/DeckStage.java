@@ -161,38 +161,72 @@ public class DeckStage {
     }
 
     private static void EventHandler(int dummyDirection, int currentDirection, Deck players[], Card card) {
-//        card.Print ();
-        players[currentDirection].remove (card.nvalue);
-        deckHistory.push_back (card);
-        if (gridPaneCenter.getChildren ( ).size ( ) == 4) {
-            gridPaneCenter.getChildren ( ).removeAll (gridPaneCenter.getChildren ( ));
-            gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
-            GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
-                    getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
-        } else if (gridPaneCenter.getChildren ( ).size ( ) > 0) {
-            gridPaneCenter.getChildren ( ).add (0, new ImageView (images[card.nvalue]));
-            GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
-                    getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
+        if (isLegalMove (players, card)) {
+            players[currentDirection].remove (card.nvalue);
+            deckHistory.push_back (card);
             if (gridPaneCenter.getChildren ( ).size ( ) == 4) {
-                winningTricks.push_back (
-                        compare (deckHistory.deck[deckHistory.deck.length - 1],
-                                deckHistory.deck[deckHistory.deck.length - 2],
-                                deckHistory.deck[deckHistory.deck.length - 3],
-                                deckHistory.deck[deckHistory.deck.length - 4])
-                );
-                winningTricks.printDeck ( );
+                gridPaneCenter.getChildren ( ).removeAll (gridPaneCenter.getChildren ( ));
+                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
+                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
+                        getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
+            } else if (gridPaneCenter.getChildren ( ).size ( ) > 0) {
+                gridPaneCenter.getChildren ( ).add (0, new ImageView (images[card.nvalue]));
+                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
+                        getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
+                if (gridPaneCenter.getChildren ( ).size ( ) == 4) {
+                    Card winner = compare (deckHistory.deck[deckHistory.deck.length - 1],
+                            deckHistory.deck[deckHistory.deck.length - 2],
+                            deckHistory.deck[deckHistory.deck.length - 3],
+                            deckHistory.deck[deckHistory.deck.length - 4]);
+                    winningTricks.push_back (winner);
+                    winner.Print ( );
+                    new DeckStage (players, winner.ndirection, dummyDirection, contractBid, true);
+                }
+            } else {
+                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
+                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
+                        getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
             }
+            if (isPlayersEmpty (players)) {
+                // TODO: 1/18/2016 start scoring phase
+            }
+            if (gridPaneCenter.getChildren ( ).size ( ) < 4)
+                new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
         } else {
-            gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
-            GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
-                    getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
+            AlertBox.display ("Illegal Move", card.lssuit + " does not trump or follow suit.");
         }
-        if (isPlayersEmpty (players)) {
-            // TODO: 1/18/2016 start scoring phase
-            System.out.println ( );
-            winningTricks.printDeck ( );
+    }
+
+    private static boolean isLegalMove(Deck players[], Card card) {
+        if (deckHistory.deck.length % 4 == 0) return true;
+        else {
+            int nsuit = deckHistory.deck[(deckHistory.deck.length / 4) * 4].nsuit;
+            if (card.nsuit == nsuit) {
+                return true;
+            } else if (!Deck.isThereSuit (players[card.ndirection], nsuit)) {
+                return true;
+            }
         }
-        new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
+        return false;
+    }
+
+    private static Card compare(Card... cards) {
+        Card maxCard = cards[0];
+        int auctionBidSuit = 3 - contractBid.nsuit;
+        for (Card card : cards) {
+            if (maxCard.nsuit == auctionBidSuit) {
+                if (card.nsuit == auctionBidSuit && card.nrank >= maxCard.nrank) {
+                    maxCard = card;
+                }
+            } else if (maxCard.nsuit < auctionBidSuit || maxCard.nsuit > auctionBidSuit) {
+                if (card.nsuit == auctionBidSuit) {
+                    maxCard = card;
+                } else if (card.nrank >= maxCard.nrank) {
+                    maxCard = card;
+                }
+            }
+        }
+        return maxCard;
     }
 
     //region Unused printTakenTricks
@@ -224,25 +258,6 @@ public class DeckStage {
 //        return retDeck;
 //    }
     //endregion
-
-    private static Card compare(Card... cards) {
-        Card maxCard = cards[0];
-        int lastBidSuit = 3 - contractBid.nsuit;
-        for (Card card : cards) {
-            if (maxCard.nsuit == lastBidSuit) {
-                if (card.nsuit == lastBidSuit && card.nrank >= maxCard.nrank) {
-                    maxCard = card;
-                }
-            } else if (maxCard.nsuit < lastBidSuit || maxCard.nsuit > lastBidSuit) {
-                if (card.nsuit == lastBidSuit) {
-                    maxCard = card;
-                } else if (card.nrank >= maxCard.nrank) {
-                    maxCard = card;
-                }
-            }
-        }
-        return maxCard;
-    }
 
     private static boolean isPlayersEmpty(Deck players[]) {
         for (Deck aDeck : players)

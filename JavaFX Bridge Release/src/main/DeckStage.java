@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.Bid;
 import logic.Card;
@@ -128,9 +130,11 @@ public class DeckStage {
         Group bottomGroup = new Group (bottomCards);
         HBox alignTop = new HBox (topGroup);
         alignTop.getChildren ( ).add (new Label ("   "));
-        Label topLabel = new Label (Bid.nDirectiontolsDirection ((currentDirection + 2) % 4));
+        Label topLabel = new Label (" " + Bid.nDirectiontolsDirection ((currentDirection + 2) % 4));
         topLabel.setRotate (180);
-        alignTop.getChildren ( ).add (topLabel);
+        topLabel.setFont (Font.font ("Verdana", 20));
+        topLabel.setTextFill (Color.ORANGERED);
+        alignTop.getChildren ( ).add (0, topLabel);
         alignTop.setAlignment (Pos.CENTER);
         alignTop.setRotate (180);
         VBox alignRight = new VBox (rightGroup);
@@ -139,6 +143,8 @@ public class DeckStage {
         alignBottom.getChildren ( ).add (new Label ("   "));
         Label bottomLabel = new Label (Bid.nDirectiontolsDirection ((currentDirection + 4) % 4));
         bottomLabel.setRotate (180);
+        bottomLabel.setFont (Font.font ("Verdana", 20));
+        bottomLabel.setTextFill (Color.ORANGERED);
         alignBottom.getChildren ( ).add (bottomLabel);
         alignBottom.setAlignment (Pos.CENTER);
         alignBottom.setRotate (180);
@@ -158,7 +164,10 @@ public class DeckStage {
         borderPane.setBackground (background);
         borderPane.setMinSize (1200, 675);
         stage.setScene (new Scene (borderPane));
-        if (show) stage.show ( );
+        if (show) {
+            stage.setResizable (false);
+            stage.show ( );
+        }
     }
 
     private static void EventHandler(int dummyDirection, int currentDirection, Deck players[], Card card) {
@@ -189,8 +198,8 @@ public class DeckStage {
             }
             if (isPlayersEmpty (players)) {
                 stage.close ( );
-                System.out.println (getWinningTricksbyDirection ( ));
-                contractBid.Print ();
+//                System.out.println (getWinningTricksbyDirection ( ));
+//                contractBid.Print ();
                 ScoreStage.display (new Score (contractBid, getWinningTricksbyDirection ( )).calculate ( ), contractBid);
             }
             if (gridPaneCenter.getChildren ( ).size ( ) < 4)
@@ -382,6 +391,8 @@ public class DeckStage {
             vBox.getChildren ( ).add (imageView);
         }
         Label direction = new Label (Bid.nDirectiontolsDirection (currentDirection));
+        direction.setFont (Font.font ("Verdana", 20));
+        direction.setTextFill (Color.GHOSTWHITE);
         if (!right) direction.setRotate (180);
         vBox.getChildren ( ).add (0, direction);
         return vBox;

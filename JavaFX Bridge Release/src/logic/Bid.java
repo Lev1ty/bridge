@@ -6,7 +6,7 @@ package logic;
 public class Bid {
     // TODO: 1/5/2016 Make bid then make auction wrapper for bid
     public int nvalue, ndirection, nlevel, nsuit;
-    public String slevel, ssuit, sdirection, svalue;
+    public String slevel, ssuit, sdirection, svalue, lsdirection;
     public boolean x, xx;
 
     public Bid() {
@@ -25,6 +25,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
+        sDirectiontolsDirection ( );
     }
 
     public Bid(String svalue, String sdirection) {
@@ -35,6 +36,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
+        sDirectiontolsDirection ( );
     }
 
     public Bid(String svalue, int ndirection) {
@@ -44,6 +46,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
+        sDirectiontolsDirection ( );
     }
 
     public static String nDirectiontosDirection(int ndirection) {
@@ -289,5 +292,24 @@ public class Bid {
                 break;
         }
         else System.out.println ("Overwrite or Range error at class Bid in nDirectiontosDirection.");
+    }
+
+    private void sDirectiontolsDirection() {
+        switch (ssuit.charAt (0)) {
+            case 'N':
+                lsdirection = "North";
+                break;
+            case 'E':
+                lsdirection = "East";
+                break;
+            case 'S':
+                lsdirection = "South";
+                break;
+            case 'W':
+                lsdirection = "West";
+                break;
+            default:
+                break;
+        }
     }
 }

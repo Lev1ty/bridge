@@ -14,13 +14,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 //        region Score testing
-                Bid bid = new Bid ( );
-        bid.slevel = "1";
-        bid.nsuit = 4;
+//        Bid bid = new Bid ( );
+//        bid.slevel = "1";
+//        bid.nsuit = 4;
 //        bid.x = true;
 //        bid.xx = true;
-        Score score = new Score (bid, 8);
-        System.out.println (score.calculate ( ));
+//        Score score = new Score (bid, 8);
+//        ScoreStage.display (score.calculate (),bid);
 //        endregion
         switch (MenuStage.display ( )) {
             case 2: {
@@ -32,7 +32,7 @@ public class Main extends Application {
                 new BidStage ( );
                 Stage stage = new Stage ( );
                 stage.setOpacity (0.75);
-                BidStage bidStage = new BidStage (masterDeck, players, stage, rngdir1, 1, 7, 0, 4);
+                BidStage bidStage = new BidStage (masterDeck, players, stage, new Stage(), rngdir1, 1, 7, 0, 4);
                 break;
             }
             default:

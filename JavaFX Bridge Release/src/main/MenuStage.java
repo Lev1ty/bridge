@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -22,12 +24,14 @@ public class MenuStage {
     public static int display() {
         gridPane.setBackground (new Background (new BackgroundImage (backgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-        gridPane.setPadding (new Insets (50, 200, 200, 150));
+        gridPane.setPadding (new Insets (100, 200, 100, 100));
         Label title = new Label ("Bridge");
+        title.setFont (Font.font ("Verdana", 50));
+        title.setTextFill (Color.WHITE);
         int row = 0, col = 0;
         gridPane.add (title, row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
-        gridPane.add (getButton ("Start Bridge", getButton ( )), row, col++);
+        gridPane.add (getButton ("Start", getButton ( )), row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
         gridPane.add (getButton ("Instructions", getButton ( )), row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
@@ -72,7 +76,7 @@ public class MenuStage {
         return button;
     }
 
-    private static Image getImage(String name, String ending) {
+    public static Image getImage(String name, String ending) {
         Image image = null;
         try {
             image = new Image ("cards\\" + name + "." + ending);

@@ -113,6 +113,41 @@ public class Bid {
         return ndirection;
     }
 
+    public static String nSuittosSuit(int nsuit) {
+        String ssuit = null;
+        if (nsuit >= -3 && nsuit <= 4) switch (nsuit) {
+            case -3:
+                ssuit = "XX";
+                break;
+            case -2:
+                ssuit = "X";
+                break;
+            case -1:
+                ssuit = "P";
+                break;
+            case 0:
+                ssuit = "C";
+                break;
+            case 1:
+                ssuit = "D";
+                break;
+            case 2:
+                ssuit = "H";
+                break;
+            case 3:
+                ssuit = "S";
+                break;
+            case 4:
+                ssuit = "NT";
+                break;
+            default:
+                assert (nsuit >= -3 && nsuit <= 4);
+                break;
+        }
+        else System.out.println ("Overwrite or Range error at class Bid nSuittosSuit.");
+        return ssuit;
+    }
+
     public void Print() {
         System.out.println (
                 "nvalue: " + nvalue +
@@ -188,41 +223,6 @@ public class Bid {
     private void nValuetonSuitLevel() {
         nValuetonLevel ( );
         nValuetonSuit ( );
-    }
-
-    public static String nSuittosSuit(int nsuit) {
-        String ssuit = null;
-        if (nsuit >= -3 && nsuit <= 4) switch (nsuit) {
-            case -3:
-                ssuit = "XX";
-                break;
-            case -2:
-                ssuit = "X";
-                break;
-            case -1:
-                ssuit = "P";
-                break;
-            case 0:
-                ssuit = "C";
-                break;
-            case 1:
-                ssuit = "D";
-                break;
-            case 2:
-                ssuit = "H";
-                break;
-            case 3:
-                ssuit = "S";
-                break;
-            case 4:
-                ssuit = "NT";
-                break;
-            default:
-                assert (nsuit >= -3 && nsuit <= 4);
-                break;
-        }
-        else System.out.println ("Overwrite or Range error at class Bid nSuittosSuit.");
-        return ssuit;
     }
 
     private void nSuittosSuit() {

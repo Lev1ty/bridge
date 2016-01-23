@@ -12,9 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import logic.Bid;
-import logic.BridgeScore;
 import logic.Card;
 import logic.Deck;
+import logic.Score;
 
 /**
  * Created by Adam on 1/7/2016.
@@ -188,16 +188,10 @@ public class DeckStage {
                         getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
             }
             if (isPlayersEmpty (players)) {
-                stage.close ();
-                winningTricks.printDeck ();
-                int tricks = getWinningTricksbyDirection ();
-                System.out.println ( tricks);
+                stage.close ( );
+                System.out.println (getWinningTricksbyDirection ( ));
                 contractBid.Print ();
-//                System.out.println ( BridgeScore.calculateScore ( contractBid.nlevel,contractBid.nsuit,
-//                        contractBid.x,contractBid.xx,(tricks-6)>=contractBid.nlevel,
-//                        tricks));
-                ScoreStage.display ( BridgeScore.calculateScore ( contractBid.nlevel,contractBid.nsuit,
-                        contractBid.x,contractBid.xx,(tricks-6)>=(contractBid.nlevel + 1), tricks), contractBid );
+                ScoreStage.display (new Score (contractBid, getWinningTricksbyDirection ( )).calculate ( ), contractBid);
             }
             if (gridPaneCenter.getChildren ( ).size ( ) < 4)
                 new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
@@ -208,10 +202,10 @@ public class DeckStage {
     }
 
     private static int getWinningTricksbyDirection() {
-        int dir[]=  new int[4];
+        int dir[] = new int[4];
         for (int i = 0; i < dir.length; i++) dir[i] = 0;
-        for (Card card:winningTricks.deck) ++dir[card.ndirection];
-        return dir[contractBid.ndirection] + dir[(contractBid.ndirection+2)%4];
+        for (Card card : winningTricks.deck) ++dir[card.ndirection];
+        return dir[contractBid.ndirection] + dir[(contractBid.ndirection + 2) % 4];
     }
 
     private static boolean isLegalMove(Deck players[], Card card) {

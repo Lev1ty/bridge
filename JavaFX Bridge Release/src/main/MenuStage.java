@@ -1,15 +1,12 @@
 package main;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 /**
  * Created by Adam on 1/21/2016.
@@ -32,23 +29,29 @@ public class MenuStage {
         gridPane.add (getButton (0, getButton ( )), row, col++);
         gridPane.add (getButton ("Start Bridge", getButton ( )), row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
-        gridPane.add (getButton ("Instructions", getButton ()), row, col++);
+        gridPane.add (getButton ("Instructions", getButton ( )), row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
         gridPane.add (getButton ("Exit", getButton ( )), row, col);
         stage.setTitle ("Menu");
         stage.setScene (scene);
         stage.setResizable (false);
         stage.showAndWait ( );
-        stage.setOnCloseRequest ( event -> result = 1 );
+        stage.setOnCloseRequest (event -> result = 1);
         return result;
     }
 
     private static void eventHandler(String name) {
-        stage.close ();
+        stage.close ( );
         switch (name.charAt (0)) {
-            case 'S': result = 2; break;
-            case 'E': result = 1; break;
-            default: result = 0; break;
+            case 'S':
+                result = 2;
+                break;
+            case 'E':
+                result = 1;
+                break;
+            default:
+                result = 0;
+                break;
         }
     }
 
@@ -60,7 +63,7 @@ public class MenuStage {
 
     private static Button getButton(String name, Button button) {
         button.setText (name);
-        button.setOnAction (event -> eventHandler(name));
+        button.setOnAction (event -> eventHandler (name));
         return button;
     }
 

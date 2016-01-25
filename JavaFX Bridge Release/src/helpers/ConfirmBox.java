@@ -16,14 +16,14 @@ public class ConfirmBox {
     static boolean answer;
 
     public static boolean display(String title, String message) {
-        Stage window = new Stage ( );
+        Stage window = new Stage ( );//new window
         window.setAlwaysOnTop (true);
-        window.initModality (Modality.APPLICATION_MODAL);
-        window.setTitle (title);
+        window.initModality (Modality.APPLICATION_MODAL);//blocks input to other windows
+        window.setTitle (title);//set title of window
         window.setMinWidth (250);
-        Label label = new Label ( );
-        label.setText (message);
-        label.setFont(Font.font("Verdana",20));
+        Label label = new Label ( );//Label for message
+        label.setText (message);//set label to display message
+        label.setFont(Font.font("Verdana",20));//set font and size
 
         //Two choices
         Button yes = new Button ("Yes");
@@ -39,17 +39,17 @@ public class ConfirmBox {
             window.close ( );
         });
 
-        VBox layout = new VBox (10);
+        VBox layout = new VBox (10);//layout to format buttons
 
         //Add buttons to layout and to scene to stage
         layout.getChildren ( ).addAll (label, yes, no);
-        layout.setAlignment (Pos.CENTER);
-        Scene scene = new Scene (layout);
-        window.setScene (scene);
-        window.setOnCloseRequest (event -> answer = false);
-        window.setResizable (false);
-        window.showAndWait ( );
+        layout.setAlignment (Pos.CENTER);//align layout
+        Scene scene = new Scene (layout);//set scene to layout
+        window.setScene (scene);//set window to scene
+        window.setOnCloseRequest (event -> answer = false);//set reaction on 'x' button
+        window.setResizable (false);//disable resizing
+        window.showAndWait ( );//pause thread until window is closed
 
-        return answer;
+        return answer;//return input from user
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
 
 /**
@@ -26,8 +27,8 @@ public class MenuStage {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         gridPane.setPadding (new Insets (100, 200, 100, 100));
         Label title = new Label ("Bridge");
-        title.setFont (Font.font ("Verdana", 50));
-        title.setTextFill (Color.WHITE);
+        title.setFont (Font.font ("Verdana", FontPosture.ITALIC, 50));
+        title.setTextFill (Color.ORANGERED);
         int row = 0, col = 0;
         gridPane.add (title, row, col++);
         gridPane.add (getButton (0, getButton ( )), row, col++);
@@ -65,6 +66,7 @@ public class MenuStage {
     private static Button getButton() {
         Button button = new Button ( );
         button.setPadding (new Insets (10, 10, 10, 10));
+        button.setPrefWidth ( 90 );
         return button;
     }
 

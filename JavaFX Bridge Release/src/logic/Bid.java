@@ -5,11 +5,11 @@ package logic;
  */
 public class Bid {
     // TODO: 1/5/2016 Make bid then make auction wrapper for bid
-    public int nvalue, ndirection, nlevel, nsuit;
-    public String slevel, ssuit, sdirection, svalue, lsdirection;
-    public boolean x, xx;
+    public int nvalue, ndirection, nlevel, nsuit;//int data for computation
+    public String slevel, ssuit, sdirection, svalue, lsdirection;//string data for display
+    public boolean x, xx;//switches for double and redouble
 
-    public Bid() {
+    public Bid() {//default initialization
         nvalue = 0;
         nlevel = 0;
         nsuit = 0;
@@ -20,8 +20,10 @@ public class Bid {
 
     public Bid(int nvalue, int ndirection) {
         new Bid ( );
+        //set global values
         this.nvalue = nvalue;
         this.ndirection = ndirection;
+        //translate
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
@@ -30,9 +32,11 @@ public class Bid {
 
     public Bid(String svalue, String sdirection) {
         new Bid ( );
+        //set globals
         this.sdirection = sdirection;
         sValuetonValue (svalue);
         ndirection = sDirectiontonDirection (sdirection);
+        //translate
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
@@ -41,7 +45,9 @@ public class Bid {
 
     public Bid(String svalue, int ndirection) {
         new Bid ( );
+        //set globals
         this.ndirection = ndirection;
+        //translate
         sValuetonValue (svalue);
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
@@ -51,6 +57,7 @@ public class Bid {
 
     public static String nDirectiontosDirection(int ndirection) {
         String sdirection = "Error";
+        //program internal range checking
         if (ndirection >= 0 && ndirection <= 3) switch (ndirection) {
             case 0:
                 sdirection = "N";
@@ -67,13 +74,13 @@ public class Bid {
             default:
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
-        }
-        else System.out.println ("Range error at class Bid in nDirectiontosDirection.");
+        } else System.out.println ("Range error at class Bid in nDirectiontosDirection.");
         return sdirection;
     }
 
-    public static String nDirectiontolsDirection(int ndirection) {
+    public static String nDirectiontolsDirection(int ndirection) {//full form directions
         String sdirection = "Error";
+        //program internal range checking
         if (ndirection >= 0 && ndirection <= 3) switch (ndirection) {
             case 0:
                 sdirection = "North";
@@ -90,13 +97,12 @@ public class Bid {
             default:
                 assert (ndirection >= 0 && ndirection <= 3);
                 break;
-        }
-        else System.out.println ("Range error at class Bid in nDirectiontolsDirection.");
+        } else System.out.println ("Range error at class Bid in nDirectiontolsDirection.");
         return sdirection;
     }
 
     public static int sDirectiontonDirection(String sdirection) {
-        int ndirection = -1;
+        int ndirection = -1;//preset error
         switch (sdirection.charAt (0)) {
             case 'N':
                 ndirection = 0;
@@ -116,8 +122,9 @@ public class Bid {
         return ndirection;
     }
 
-    public static String nSuittosSuit(int nsuit) {
+    public static String nSuittosSuit(int nsuit) {//overloaded non-static nSuittosSuit method for external usage
         String ssuit = null;
+        //range checking
         if (nsuit >= -3 && nsuit <= 4) switch (nsuit) {
             case -3:
                 ssuit = "XX";
@@ -151,7 +158,7 @@ public class Bid {
         return ssuit;
     }
 
-    public void Print() {
+    public void Print() {//print fields
         System.out.println (
                 "nvalue: " + nvalue +
                         " ndirection: " + ndirection +
@@ -168,8 +175,9 @@ public class Bid {
     }
 
     private void sValuetonValue(String svalue) {
-        this.svalue = svalue;
+        this.svalue = svalue;//set global
         int nlevel = 0, nsuit = 0;
+        //auxillary bids
         if (svalue.length ( ) > 3) {
             switch (svalue) {
                 case "Pass":
@@ -181,10 +189,10 @@ public class Bid {
                 case "Redouble":
                     nsuit = 37;
                     break;
-            }
+            }//contract bids
         } else {
-            nlevel = svalue.charAt (0) - '1';
-            switch (svalue.charAt (1)) {
+            nlevel = svalue.charAt (0) - '1';//get level
+            switch (svalue.charAt (1)) {//get suit
                 case 'C':
                     nsuit = 0;
                     break;
@@ -203,33 +211,38 @@ public class Bid {
                 default:
                     break;
             }
-        }
+        }//set global nvalue
         this.nvalue = nlevel * 5 + nsuit;
     }
 
     private void nValuetonSuit() {
+        //range checking, overwrite checking
         if (nsuit == 0 && nvalue >= 0 && nvalue <= 37) {
+            //auxillary bids
             if (nvalue == 35) nsuit = -1;
             else if (nvalue == 36) nsuit = -2;
             else if (nvalue == 37) nsuit = -3;
+            //contract bids
             else nsuit = nvalue % 5;
         } else System.out.println ("Overwrite or Range error in class Bid nValuetonSuit.");
     }
 
     private void nValuetonLevel() {
+        //range and overwrite checking
         if (nlevel == 0 && nvalue >= 0 && nvalue <= 37) {
 //            if (nvalue >= 35) nlevel = -1;
 //            else nlevel = nvalue / 5;
-            nlevel = nvalue / 5;
+            nlevel = nvalue / 5;//ge level
         } else System.out.println ("Overwrite or Range error in class Bid nValuetonSuit.");
     }
 
-    private void nValuetonSuitLevel() {
+    private void nValuetonSuitLevel() {//wrapper method
         nValuetonLevel ( );
         nValuetonSuit ( );
     }
 
     private void nSuittosSuit() {
+        //overwrite and range checking
         if (ssuit == null && nsuit >= -3 && nsuit <= 4) switch (nsuit) {
             case -3:
                 ssuit = "XX";
@@ -263,18 +276,20 @@ public class Bid {
     }
 
     private void nLeveltosLevel() {
+        //overwrite and range checking
         if (slevel == null && nlevel >= 0 && nlevel <= 7) {
-            if (nlevel == 7) slevel = "Aux";
-            else slevel = String.valueOf ((char) (nlevel + 1 + '0'));
+            if (nlevel == 7) slevel = "Aux";//aux level for pass, double, redouble
+            else slevel = String.valueOf ((char) (nlevel + 1 + '0'));//contract bid
         } else System.out.println ("Overwrite or Range error at class Bid nLeveltosLevel.");
     }
 
-    private void nSuitLeveltosSuitLevel() {
+    private void nSuitLeveltosSuitLevel() {//wrapper method
         nSuittosSuit ( );
         nLeveltosLevel ( );
     }
 
     private void nDirectiontosDirection() {
+        //overwrite and range error checking
         if (sdirection == null && ndirection >= 0 && ndirection <= 3) switch (ndirection) {
             case 0:
                 sdirection = "N";
@@ -296,6 +311,7 @@ public class Bid {
     }
 
     private void nDirectiontolsDirection() {
+        //no overwrite or range checking
         switch (ndirection) {
             case 0:
                 lsdirection = "North";

@@ -20,12 +20,12 @@ import logic.Deck;
  * Created by Adam on 1/7/2016.
  */
 public class BidStage {
-    public static Auction auction;
-    private static boolean show;
+    public static Auction auction;//container that stores bids
+    private static boolean show;//if true show screen, prevent reopening to prevent flickering
 
     public BidStage() {
         initAuction ( );
-    }
+    }//default constructor initializes static fields
 
     public BidStage(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, Stage stage1,
                     String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {

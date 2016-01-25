@@ -249,48 +249,11 @@ public class DeckStage {
         return maxCard;
     }
 
-    //region Unused printTakenTricks
-    //    private static void printTakenTricks(int takenTricks[][][]) {
-//        for (int[][] level1 :
-//                takenTricks) {
-//            System.out.println ();
-//            for (int[] level2 :
-//                    level1) {
-//                for (int i :
-//                        level2) {
-//                    System.out.print ( i );
-//                    System.out.print ( ' ' );
-//                }
-//                System.out.println ();
-//            }
-//            System.out.println ();
-//        }
-//    }
-//
-//    private static int[][][] takenTricksResize(int takenTricks[][][], int index1, int index2, Card card, int length) {
-//        takenTricks[index1][index2] = resize ( takenTricks[index1][index2], length );
-//        return takenTricks;
-//    }
-//
-//    private static int[] resize(int resize[], int length) {
-//        int retDeck[] = new int[length];
-//        for (int i = 0; i < (length >= resize.length ? resize.length : length); i++) retDeck[i] = resize[i];
-//        return retDeck;
-//    }
-    //endregion
-
     private static boolean isPlayersEmpty(Deck players[]) {
         for (Deck aDeck : players)
             if (aDeck.deck.length > 0)
                 return false;
         return true;
-    }
-
-    private static void setCenterBacks() {
-        for (int i = gridPaneCenter.getChildren ( ).size ( ); i < 4; i++) {
-            gridPaneCenter.getChildren ( ).add (0, new ImageView (getImage ("b")));
-            GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0), getCenterPosCol (i), getCenterPosRow (i));
-        }
     }
 
     private static int getCenterPosRow(int currentDirection) {

@@ -25,7 +25,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
-        sDirectiontolsDirection ( );
+        nDirectiontolsDirection ( );
     }
 
     public Bid(String svalue, String sdirection) {
@@ -36,7 +36,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
-        sDirectiontolsDirection ( );
+        nDirectiontolsDirection ( );
     }
 
     public Bid(String svalue, int ndirection) {
@@ -46,7 +46,7 @@ public class Bid {
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
         nDirectiontosDirection ( );
-        sDirectiontolsDirection ( );
+        nDirectiontolsDirection ( );
     }
 
     public static String nDirectiontosDirection(int ndirection) {
@@ -162,7 +162,8 @@ public class Bid {
                         " ssuit: " + ssuit +
                         " sdirection: " + sdirection +
                         " double: " + x +
-                        " redouble: " + xx
+                        " redouble: " + xx +
+                        " lsdireciton: " + lsdirection
         );
     }
 
@@ -294,18 +295,18 @@ public class Bid {
         else System.out.println ("Overwrite or Range error at class Bid in nDirectiontosDirection.");
     }
 
-    private void sDirectiontolsDirection() {
-        switch (ssuit.charAt (0)) {
-            case 'N':
+    private void nDirectiontolsDirection() {
+        switch (ndirection) {
+            case 0:
                 lsdirection = "North";
                 break;
-            case 'E':
+            case 1:
                 lsdirection = "East";
                 break;
-            case 'S':
+            case 2:
                 lsdirection = "South";
                 break;
-            case 'W':
+            case 3:
                 lsdirection = "West";
                 break;
             default:

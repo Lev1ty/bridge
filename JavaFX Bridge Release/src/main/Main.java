@@ -15,14 +15,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 //        region Score testing
 //        Bid bid = new Bid ( );
-//        bid.slevel = "1";
-//        bid.nsuit = 4;
-//        bid.x = true;
-//        bid.xx = true;
+//        bid.slevel = "2";
+//        bid.nsuit = 1;
+//        bid.x = false;
+//        bid.xx = false;
 //        Score score = new Score (bid, 8);
 //        ScoreStage.display (score.calculate (),bid);
 //        endregion
         switch (MenuStage.display ( )) {
+            case 3:
+
             case 2: {
                 int rngdir1 = (int) (Math.random ( ) * 100 % 4);
                 Deck masterDeck = new Deck ( );

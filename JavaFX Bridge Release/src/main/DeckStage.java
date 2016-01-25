@@ -198,8 +198,8 @@ public class DeckStage {
             }
             if (isPlayersEmpty (players)) {
                 stage.close ( );
-//                System.out.println (getWinningTricksbyDirection ( ));
-//                contractBid.Print ();
+                System.out.println (getWinningTricksbyDirection ( ));
+                contractBid.Print ();
                 ScoreStage.display (new Score (contractBid, getWinningTricksbyDirection ( )).calculate ( ), contractBid);
             }
             if (gridPaneCenter.getChildren ( ).size ( ) < 4)

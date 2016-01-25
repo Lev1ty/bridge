@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class AlertBox {
 
         Label label = new Label ( );
         label.setText (message);
+        label.setFont(Font.font("Verdana",20));
 
         VBox layout = new VBox (10);
         layout.getChildren ( ).addAll (label);
@@ -30,6 +32,7 @@ public class AlertBox {
         //Display and wait for it to be closed
         Scene scene = new Scene (layout);
         window.setScene (scene);
+        window.setResizable (false);
         window.showAndWait ( );
     }
 }

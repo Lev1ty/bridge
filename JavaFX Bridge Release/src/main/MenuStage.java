@@ -53,6 +53,9 @@ public class MenuStage {
             case 'E':
                 result = 1;
                 break;
+            case 'I':
+                result = 3;
+                break;
             default:
                 result = 0;
                 break;

@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class ConfirmBox {
         window.setMinWidth (250);
         Label label = new Label ( );
         label.setText (message);
+        label.setFont(Font.font("Verdana",20));
 
         //Two choices
         Button yes = new Button ("Yes");
@@ -45,6 +47,7 @@ public class ConfirmBox {
         Scene scene = new Scene (layout);
         window.setScene (scene);
         window.setOnCloseRequest (event -> answer = false);
+        window.setResizable (false);
         window.showAndWait ( );
 
         return answer;

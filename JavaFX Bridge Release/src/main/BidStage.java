@@ -125,6 +125,7 @@ public class BidStage {
             ++auction.nbid;
             if ((auction.nbid == 4 && auction.npass == 4)) {
                 stage.close ( );
+                stage1.close ( );
                 DeckStage.stage.close ( );
                 AlertBox.display ("Auction", "Auction Passed Out.");
             } else if (auction.bcontract && auction.npass >= 3 && auction.nbid >= 4) {
@@ -166,11 +167,15 @@ public class BidStage {
         auxBid[0] = new Button ("Pass");
         auxBid[0].setOnAction (event -> eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Pass"));
         auxBid[1] = new Button ("Double");
-        auxBid[1].setOnAction (event -> eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Double"));
+        auxBid[1].setOnAction (event -> {
+            if (auction.bcontract)
+                eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Double");
+            else AlertBox.display ("Double", "Cannot double before a contract bid. (e.g. 1NT)");
+        });
         auxBid[2] = new Button ("Redouble");
         auxBid[2].setOnAction (event -> {
-            if (!auction.x) AlertBox.display ("Redouble", "Cannot redouble before double.");
-            else eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Redouble");
+            if (auction.x) eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Redouble");
+            else AlertBox.display ("Redouble", "Cannot redouble before double.");
         });
         HBox hBoxArr[] = new HBox[endLevel - startLevel + 2];
         hBoxArr[0] = new HBox (1.825 * padding);

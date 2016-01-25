@@ -22,75 +22,75 @@ import logic.Score;
  * Created by Adam on 1/7/2016.
  */
 public class DeckStage {
-    public static Stage stage;
-    public static boolean show;
-    public static Bid contractBid;
-    public static Deck deckHistory;
-    public static Deck winningTricks;
-    private static Image images[];
-    private static GridPane gridPaneCenter;
+    public static Stage stage;//window of deckstage
+    public static boolean show;//show deckstage
+    public static Bid contractBid;//game binding bid
+    public static Deck deckHistory;//played cards
+    public static Deck winningTricks;//winning tricks
+    private static Image images[];//array of images of cards
+    private static GridPane gridPaneCenter;//center layout
 
     public DeckStage() {
         initDeckStage ( );
-    }
+    }//init deckstage
 
     public DeckStage(Deck players[], int currentDirection, boolean preplay, boolean showdummy) {
-        start (players, currentDirection, currentDirection, -1, preplay, showdummy);
-        DeckStage.show = false;
+        start (players, currentDirection, currentDirection, -1, preplay, showdummy);//call main method
+        DeckStage.show = false;//set to false to avoid flickering
     }
 
     public DeckStage(Deck players[], int currentDirection, int dummyDirection, boolean showdummy) {
-        dummyDirection %= 4;
-        currentDirection %= 4;
-        start (players, currentDirection, currentDirection, dummyDirection, false, showdummy);
-        DeckStage.show = false;
+        dummyDirection %= 4;//keep dummy in rnage
+        currentDirection %= 4;//keep current direction in range
+        start (players, currentDirection, currentDirection, dummyDirection, false, showdummy);//call main method
+        DeckStage.show = false;//set to false to avoid flickering
     }
 
     public DeckStage(Deck players[], int currentDirection, int dummyDirection, Bid contractBid, boolean showdummy) {
-        DeckStage.contractBid = contractBid;
-        for (int i = 0; i < 4; i++)
+        DeckStage.contractBid = contractBid;//set global
+        for (int i = 0; i < 4; i++)//comb through decks and set priority suit aka trump suit
             for (int j = 0; j < players[i].deck.length; j++)
                 players[i].deck[j].nSuittoprioritySuit (contractBid.nsuit);
-        for (int i = 0; i < 4; i++) players[i].deck = Deck.sortBySuit (players[i].deck);
-        new DeckStage (players, currentDirection, dummyDirection, showdummy);
+        for (int i = 0; i < 4; i++) players[i].deck = Deck.sortBySuit (players[i].deck);//sort all decks by priority suit
+        new DeckStage (players, currentDirection, dummyDirection, showdummy);//get another version of deckstage to start
     }
 
     public static void initDeckStage() {
-        DeckStage.stage = new Stage ( );
+        DeckStage.stage = new Stage ( );//initialize to new stage
         DeckStage.stage.setTitle ("Bridge");
         DeckStage.stage.setOpacity (0.9);
         DeckStage.stage.setMinHeight (675);
         DeckStage.stage.setMinWidth (1200);
-        DeckStage.stage.sizeToScene ( );
+        DeckStage.stage.sizeToScene ( );//size stage to scene
         DeckStage.stage.setOnCloseRequest (event -> {
-            event.consume ( );
-            if (ConfirmBox.display ("Close", "End game?")) stage.close ( );
+            event.consume ( );//consume overrides closing
+            if (ConfirmBox.display ("Close", "End game?")) stage.close ( );//if confirm to close, close
         });
-        DeckStage.show = true;
-        DeckStage.images = new Image[52];
-        for (int i = 0; i < 52; i++) DeckStage.images[i] = DeckStage.getImage (i + 1);
-        gridPaneCenter = new GridPane ( );
+        DeckStage.show = true;//show deckstage for the first time
+        DeckStage.images = new Image[52];//initialize image deck
+        for (int i = 0; i < 52; i++) DeckStage.images[i] = DeckStage.getImage (i + 1);//initialize images
+        gridPaneCenter = new GridPane ( );//intialize center layout
         gridPaneCenter.setAlignment (Pos.CENTER);
-        deckHistory = new Deck ( );
-        deckHistory.deck = Deck.resize (deckHistory.deck, 0);
-        winningTricks = new Deck ( );
-        winningTricks.deck = Deck.resize (winningTricks.deck, 0);
+        deckHistory = new Deck ( );//init deck history
+        deckHistory.deck = Deck.resize (deckHistory.deck, 0);//empty container
+        winningTricks = new Deck ( );//init winning tricks
+        winningTricks.deck = Deck.resize (winningTricks.deck, 0);//empty container
     }
 
     public static Image getImage(int nvalue) {
-        return getImage (String.valueOf (nvalue));
+        return getImage (String.valueOf (nvalue));//translate to string and call method
     }
 
     public static Image getImage(String svalue) {
         Image image = null;
         try {
-            image = new Image ("cards\\" + svalue + ".gif");
+            image = new Image ("cards\\" + svalue + ".gif");//get with gif ending
         } catch (Exception e) {
             try {
-                image = new Image ("cards\\" + svalue + ".jpg");
+                image = new Image ("cards\\" + svalue + ".jpg");//get with jpg ending
             } catch (Exception e1) {
-                e1.printStackTrace ( );
-                AlertBox.display ("Error", "Image " + svalue + " not found.");
+                e1.printStackTrace ( );//print error stack
+                AlertBox.display ("Error", "Image " + svalue + " not found.");//display alert
             }
         }
         return image;
@@ -99,31 +99,35 @@ public class DeckStage {
     private static void start(Deck players[], int revealDirection,
                               int currentDirection, int dummyDirection,
                               boolean preplay, boolean showdummy) {
-        BorderPane borderPane = new BorderPane ( );
-        int temp = currentDirection + 2;
-        temp %= 4;
-        HBox topCards = getHBoxCards (dummyDirection, temp, players,
+        BorderPane borderPane = new BorderPane ( );//init layout for scene
+        int temp = currentDirection + 2;//currentdirection is across from bottom, displayed direction
+        temp %= 4;//keep in range
+        HBox topCards = getHBoxCards (dummyDirection, temp, players,//get hand
                 players[temp], images, 100, false, (temp == revealDirection || temp == dummyDirection));
         ++temp;
         temp %= 4;
         topCards.setAlignment (Pos.CENTER);
-        VBox rightCards = temp == dummyDirection ?
+        VBox rightCards = temp == dummyDirection ?//get dummy or normal cards
                 getVBoxDummyCards (dummyDirection, temp, players, players[temp], images, 100,
                         true, currentDirection == dummyDirection, true)
                 : getVBoxCards (players[(temp %= 4)], images, true, 100, temp == revealDirection, temp %= 4);
         ++temp;
         temp %= 4;
         rightCards.setAlignment (Pos.CENTER);
-        HBox bottomCards = getHBoxCards (dummyDirection, temp, players,
+        HBox bottomCards = getHBoxCards (dummyDirection, temp, players,//get hand
                 players[(temp)], images, 100, !preplay, (temp == revealDirection || temp == dummyDirection));
         ++temp;
         temp %= 4;
         bottomCards.setAlignment (Pos.CENTER);
-        VBox leftCards = (temp == dummyDirection && showdummy) ?
+        VBox leftCards = (temp == dummyDirection && showdummy) ?//if hide dummy
                 getVBoxDummyCards (dummyDirection, temp, players, players[(temp % 4)], images, 100,
                         false, currentDirection == dummyDirection, true)
-                : getVBoxCards (players[temp], images, false, 100, temp == revealDirection, temp % 4);
+                : getVBoxCards (players[temp], images, false, 100, temp == revealDirection, temp % 4);//normal cards
         leftCards.setAlignment (Pos.CENTER);
+        //Below code use is to
+        //Set cards into groups and then an hbox <- layouts
+        //to align the cards properly
+        //incorporate directional names with final layout
         Group rightGroup = new Group (rightCards);
         Group leftGroup = new Group (leftCards);
         Group topGroup = new Group (topCards);
@@ -159,71 +163,71 @@ public class DeckStage {
         BackgroundImage backgroundImage = new BackgroundImage (getImage ("background"), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize (
                 BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true
-        ));
+        ));//set background image
         Background background = new Background (backgroundImage);
-        borderPane.setBackground (background);
+        borderPane.setBackground (background);//incorporate background image
         borderPane.setMinSize (1200, 675);
         stage.setScene (new Scene (borderPane));
-        if (show) {
+        if (show) {//if show, display window
             stage.setResizable (false);
             stage.show ( );
         }
     }
 
     private static void EventHandler(int dummyDirection, int currentDirection, Deck players[], Card card) {
-        if (isLegalMove (players, card)) {
-            players[currentDirection].remove (card.nvalue);
-            deckHistory.push_back (card);
-            if (gridPaneCenter.getChildren ( ).size ( ) == 4) {
-                gridPaneCenter.getChildren ( ).removeAll (gridPaneCenter.getChildren ( ));
-                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
-                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
+        if (isLegalMove (players, card)) {//check legal move
+            players[currentDirection].remove (card.nvalue);//remove from hand
+            deckHistory.push_back (card);//push back into history
+            if (gridPaneCenter.getChildren ( ).size ( ) == 4) {//if trick is finished
+                gridPaneCenter.getChildren ( ).removeAll (gridPaneCenter.getChildren ( ));//remove all elements
+                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));//add image view of card
+                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),//set position of card
                         getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
-            } else if (gridPaneCenter.getChildren ( ).size ( ) > 0) {
-                gridPaneCenter.getChildren ( ).add (0, new ImageView (images[card.nvalue]));
-                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
+            } else if (gridPaneCenter.getChildren ( ).size ( ) > 0) {//there are existing cards in the center
+                gridPaneCenter.getChildren ( ).add (0, new ImageView (images[card.nvalue]));//add in card
+                GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),//set position
                         getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
-                if (gridPaneCenter.getChildren ( ).size ( ) == 4) {
+                if (gridPaneCenter.getChildren ( ).size ( ) == 4) {//if gridpane is full
                     Card winner = compare (deckHistory.deck[deckHistory.deck.length - 1],
                             deckHistory.deck[deckHistory.deck.length - 2],
                             deckHistory.deck[deckHistory.deck.length - 3],
-                            deckHistory.deck[deckHistory.deck.length - 4]);
-                    winningTricks.push_back (winner);
-                    new DeckStage (players, winner.ndirection, dummyDirection, contractBid, true);
+                            deckHistory.deck[deckHistory.deck.length - 4]);//compare played cards
+                    winningTricks.push_back (winner);//add winning member to winnning tricks container
+                    new DeckStage (players, winner.ndirection, dummyDirection, contractBid, true);//display new instance of deckstage
                 }
-            } else {
-                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));
+            } else {//no cards in center
+                gridPaneCenter.getChildren ( ).add (new ImageView (images[card.nvalue]));//add first card
                 GridPane.setConstraints (gridPaneCenter.getChildren ( ).get (0),
                         getCenterPosCol (currentDirection), getCenterPosRow (currentDirection));
             }
-            if (isPlayersEmpty (players)) {
-                stage.close ( );
-                System.out.println (getWinningTricksbyDirection ( ));
-                contractBid.Print ();
-                ScoreStage.display (new Score (contractBid, getWinningTricksbyDirection ( )).calculate ( ), contractBid);
+            if (isPlayersEmpty (players)) {//out of cards
+                stage.close ( );//close stage
+//                System.out.println (getWinningTricksbyDirection ( ));
+//                contractBid.Print ();
+                ScoreStage.display (new Score (contractBid, getWinningTricksbyDirection ( )).calculate ( ), contractBid);//display score
             }
-            if (gridPaneCenter.getChildren ( ).size ( ) < 4)
+            if (gridPaneCenter.getChildren ( ).size ( ) < 4)//refresh window
                 new DeckStage (players, ++currentDirection, dummyDirection, contractBid, true);
         } else {
-            AlertBox.display ("Illegal Move", card.lssuit + " does not follow suit " + "(" +
+            AlertBox.display ("Illegal Move", card.lssuit + " does not follow suit " + "(" +//error in played card, display error
                     deckHistory.deck[(deckHistory.deck.length / 4) * 4].lssuit + ").");
         }
     }
 
     private static int getWinningTricksbyDirection() {
-        int dir[] = new int[4];
-        for (int i = 0; i < dir.length; i++) dir[i] = 0;
-        for (Card card : winningTricks.deck) ++dir[card.ndirection];
-        return dir[contractBid.ndirection] + dir[(contractBid.ndirection + 2) % 4];
+        int dir[] = new int[4];//array of counters
+        for (int i = 0; i < dir.length; i++) dir[i] = 0;//initialize array of counters
+        for (Card card : winningTricks.deck) ++dir[card.ndirection];//update counters
+        return dir[contractBid.ndirection] + dir[(contractBid.ndirection + 2) % 4];//return sum of pair of players
     }
 
     private static boolean isLegalMove(Deck players[], Card card) {
-        if (deckHistory.deck.length % 4 == 0) return true;
+        if (deckHistory.deck.length % 4 == 0) return true;//first card of trick
         else {
             int nsuit = deckHistory.deck[(deckHistory.deck.length / 4) * 4].nsuit;
-            if (card.nsuit == nsuit) {
+            if (card.nsuit == nsuit) {//if card matches suit
                 return true;
-            } else if (!Deck.isThereSuit (players[card.ndirection], nsuit)) {
+            } else if (!Deck.isThereSuit (players[card.ndirection], nsuit)) {//if out of cards to fail follow suit
                 return true;
             }
         }
@@ -231,17 +235,17 @@ public class DeckStage {
     }
 
     private static Card compare(Card... cards) {
-        Card maxCard = cards[0];
+        Card maxCard = cards[0];//init max card
         int auctionBidSuit = 3 - contractBid.nsuit;
-        for (Card card : cards) {
+        for (Card card : cards) {//comb through cards to get max card
             if (maxCard.nsuit == auctionBidSuit) {
-                if (card.nsuit == auctionBidSuit && card.nrank >= maxCard.nrank) {
+                if (card.nsuit == auctionBidSuit && card.nrank >= maxCard.nrank) {//trump vs nontrump
                     maxCard = card;
                 }
-            } else if (maxCard.nsuit < auctionBidSuit || maxCard.nsuit > auctionBidSuit) {
+            } else if (maxCard.nsuit < auctionBidSuit || maxCard.nsuit > auctionBidSuit) {//trump vs trump
                 if (card.nsuit == auctionBidSuit) {
                     maxCard = card;
-                } else if (card.nrank >= maxCard.nrank) {
+                } else if (card.nrank >= maxCard.nrank) {//vs
                     maxCard = card;
                 }
             }
@@ -250,7 +254,7 @@ public class DeckStage {
     }
 
     private static boolean isPlayersEmpty(Deck players[]) {
-        for (Deck aDeck : players)
+        for (Deck aDeck : players)//check if there is hand is empty
             if (aDeck.deck.length > 0)
                 return false;
         return true;

@@ -9,7 +9,7 @@ import logic.Score;
 public class Main extends Application {
     public static void main(String[] args) {
         launch (args);
-    }
+    }//launches start
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -22,19 +22,20 @@ public class Main extends Application {
 //        Score score = new Score (bid, 8);
 //        ScoreStage.display (score.calculate (),bid);
 //        endregion
-        switch (MenuStage.display ( )) {
+        switch (MenuStage.display ( )) {//launch according to menu return
             case 3:
 
             case 2: {
-                int rngdir1 = (int) (Math.random ( ) * 100 % 4);
-                Deck masterDeck = new Deck ( );
-                Deck players[] = new Deck[4];
-                for (int i = 0; i < 4; i++) players[i] = new Deck (i, masterDeck);
+                int rngdir1 = (int) (Math.random ( ) * 100 % 4);//get direction
+                Deck masterDeck = new Deck ( );//get complete deck
+                Deck players[] = new Deck[4];//initialize players' hands
+                for (int i = 0; i < 4; i++) players[i] = new Deck (i, masterDeck);//initialize players' hands
+                //initializes stages
                 new DeckStage ( );
                 new BidStage ( );
-                Stage stage = new Stage ( );
-                stage.setOpacity (0.75);
-                BidStage bidStage = new BidStage (masterDeck, players, stage, new Stage(), rngdir1, 1, 7, 0, 4);
+                Stage stage = new Stage ( );//get new stage
+                stage.setOpacity (0.75);//opacity is .75
+                BidStage bidStage = new BidStage (masterDeck, players, stage, new Stage(), rngdir1, 1, 7, 0, 4);//start bidding
                 break;
             }
             default:

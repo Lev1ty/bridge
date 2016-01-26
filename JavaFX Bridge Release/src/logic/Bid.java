@@ -20,9 +20,11 @@ public class Bid {
 
     public Bid(int nvalue, int ndirection) {
         new Bid ( );
+
         //set global values
         this.nvalue = nvalue;
         this.ndirection = ndirection;
+
         //translate
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
@@ -32,10 +34,12 @@ public class Bid {
 
     public Bid(String svalue, String sdirection) {
         new Bid ( );
+
         //set globals
         this.sdirection = sdirection;
         sValuetonValue (svalue);
         ndirection = sDirectiontonDirection (sdirection);
+
         //translate
         nValuetonSuitLevel ( );
         nSuitLeveltosSuitLevel ( );
@@ -45,8 +49,10 @@ public class Bid {
 
     public Bid(String svalue, int ndirection) {
         new Bid ( );
+
         //set globals
         this.ndirection = ndirection;
+
         //translate
         sValuetonValue (svalue);
         nValuetonSuitLevel ( );
@@ -232,7 +238,7 @@ public class Bid {
         if (nlevel == 0 && nvalue >= 0 && nvalue <= 37) {
 //            if (nvalue >= 35) nlevel = -1;
 //            else nlevel = nvalue / 5;
-            nlevel = nvalue / 5;//ge level
+            nlevel = nvalue / 5;//get level
         } else System.out.println ("Overwrite or Range error in class Bid nValuetonSuit.");
     }
 

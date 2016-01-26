@@ -30,14 +30,18 @@ public class BidStage {
     public BidStage(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, Stage stage1,
                     String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
         start (masterDeck, deckStage, decksDeckStage, stage, stage1,
-                Bid.sDirectiontonDirection (sdirection), sdirection, startLevel, endLevel, startSuit, endSuit);//call main method
+                Bid.sDirectiontonDirection (sdirection), sdirection,
+                startLevel, endLevel, startSuit, endSuit);//call main method
         BidStage.show = false;//set show to false to prevent flickering
     }
 
     public BidStage(Deck masterDeck, Deck[] decksDeckStage, Stage stage, Stage stage1, int ndirection,
                     int startLevel, int endLevel, int startSuit, int endSuit) {
-        new BidStage (masterDeck, new DeckStage (decksDeckStage, ndirection, true, true), decksDeckStage, stage, stage1,
-                Bid.nDirectiontosDirection (ndirection), startLevel, endLevel, startSuit, endSuit);//call main method
+        new BidStage (masterDeck,
+                new DeckStage (decksDeckStage, ndirection, true, true),
+                decksDeckStage, stage, stage1,
+                Bid.nDirectiontosDirection (ndirection),
+                startLevel, endLevel, startSuit, endSuit);//call main method
         BidStage.show = false;//set show to false
         DeckStage.show = false;//deckstage set show to false
     }
@@ -49,12 +53,15 @@ public class BidStage {
 
     private static void start(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, Stage stage1,
                               int ndirection, String sdirection, int startLevel, int endLevel, int startSuit, int endSuit) {
+        //init
         GridPane gridPane = new GridPane ( );//new layout
         gridPane.getChildren ( ).addAll (getGridePane (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection,
                 10, startLevel, endLevel, startSuit, endSuit, 5, 10, 5, 10));
         Scene primaryScene = new Scene (gridPane);//set scene to layout
         stage.setTitle ("Bid from " + sdirection);//set title
         stage.setScene (primaryScene);//set stage to scene
+
+        //reaction to close button
         stage.setOnCloseRequest (event -> {
             event.consume ( );//override close
             if (ConfirmBox.display ("Confirm", "End Auction Prematurely?")) {//if confirm is true
@@ -62,18 +69,24 @@ public class BidStage {
                 stage1.close ( );
             }
         });
+
+        //init layout for record of bids
         GridPane gridPane1 = new GridPane ( );//layout for record of bids
         gridPane1.setPadding (new Insets (10, 10, 10, 10));//border spacing
+
         //labels
         Label north = getLabel ("North");
         Label east = getLabel ("East");
         Label south = getLabel ("South");
         Label west = getLabel ("West");
+
         //set label pos
         gridPane1.add (north, 0, 0);
         gridPane1.add (east, 1, 0);
         gridPane1.add (south, 2, 0);
         gridPane1.add (west, 3, 0);
+
+        //insert content into layout
         int row = 1;//initialize row counter
         for (Bid bid : auction.auction)
             gridPane1.add (translateToLabel (bid), bid.ndirection, (bid.ndirection == 3 ? row++ : row));//if last col, goto next row
@@ -81,6 +94,8 @@ public class BidStage {
         secondaryScene.setFill (Color.TRANSPARENT);//set scene to be transparent
         stage1.setScene (secondaryScene);//set stage to scene
         stage1.setTitle ("Bid History");//set title
+
+        //init of stage use only
         if (show) {
             stage1.initStyle (StageStyle.TRANSPARENT);//set stage to transparent
             stage1.setAlwaysOnTop (true);//set always on top
@@ -105,8 +120,8 @@ public class BidStage {
 
     private static void eventHandler(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, Stage stage1, int ndirection, String name) {
         Bid bid = new Bid (name, ndirection);//push back bid and the direction of player who bid it
-        if (ConfirmBox.display ("Confirm",
-                "Is " + bid.svalue + " your Final Bid?")) {//confirm
+        if (ConfirmBox.display ("Confirm", "Is " + bid.svalue + " your Final Bid?")) {//confirm
+            //counters and switches
             switch (name.charAt (0)) {
                 case 'P':
                     ++auction.npass;//increment pass counter
@@ -122,10 +137,14 @@ public class BidStage {
                 default:
                     break;
             }
+
+            //updating
             auction.push_back (bid.nvalue, ndirection);//insert bid into auction container
             ++ndirection;//move to next container
             ndirection %= 4;//keep counter in range
             ++auction.nbid;//add counter to number of bids
+
+            //end and continue auction scenarios
             if ((auction.nbid == 4 && auction.npass == 4)) {//pass out
                 //close windows
                 stage.close ( );
@@ -168,9 +187,11 @@ public class BidStage {
     private static GridPane getGridePane(Deck masterDeck, DeckStage deckStage, Deck[] decksDeckStage, Stage stage, Stage stage1, int ndirection,
                                          int padding, int startLevel, int endLevel, int startSuit, int endSuit,
                                          int top, int right, int bottom, int left) {
+        //init
         GridPane gridPane = new GridPane ( );//new grid pane
         gridPane.setPadding (new Insets (top, right, bottom, left));//set border spacing
         Button auxBid[] = new Button[3];//initialize auxillary bid buttons
+
         //new aux buttons and set event handlers corresponding to those
         auxBid[0] = new Button ("Pass");
         auxBid[0].setOnAction (event -> eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Pass"));
@@ -186,11 +207,14 @@ public class BidStage {
                 eventHandler (masterDeck, deckStage, decksDeckStage, stage, stage1, ndirection, "Redouble");
             else AlertBox.display ("Redouble", "Cannot redouble before double.");
         });
+
+        //add aux buttons
         HBox hBoxArr[] = new HBox[endLevel - startLevel + 2];//adjust to limitations on bidding
         hBoxArr[0] = new HBox (1.825 * padding);//horizontal spacing
         hBoxArr[0].getChildren ( ).addAll (auxBid);//add aux bid
         hBoxArr[0].setPadding (new Insets (top, right, bottom, left));//set padding
         GridPane.setConstraints (hBoxArr[0], 0, 0);//set positions of buttons for auz
+
         //region Modified getBidRow
         Button buttonFirstRow[] = new Button[endSuit - startSuit + 1];//button array for first row, row that's not standard
         for (int i = startSuit, j = 0; i <= endSuit; i++, j++) {
@@ -223,11 +247,16 @@ public class BidStage {
             });
         }
         //endregion
+
+        //rest of rows
         if (hBoxArr.length >= 2) {//if bidding requires standard button rows
+            //incomplete row
             hBoxArr[1] = new HBox (padding);
             hBoxArr[1].setPadding (new Insets (top, right, bottom, left));//set border spacing
             hBoxArr[1].getChildren ( ).addAll (buttonFirstRow);//add buttons to hbox
             GridPane.setConstraints (hBoxArr[1], 0, 1);//set positions
+
+            //complete rows
             for (int i = startLevel + 1, j = 2; i <= endLevel; i++, j++) {
                 hBoxArr[j] = getBidRow (masterDeck, deckStage, decksDeckStage, stage, stage1,
                         ndirection, i, padding, top, right, bottom, left);//get standard rows (rows that are complete)
@@ -265,6 +294,8 @@ public class BidStage {
                 default:
                     break;
             }
+
+            //add reaction to button
             arr[i] = new Button (name);//set button's name
             final String finalName = name;
             arr[i].setOnAction (event -> {

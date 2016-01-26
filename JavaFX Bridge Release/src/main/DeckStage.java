@@ -56,6 +56,7 @@ public class DeckStage {
     }
 
     public static void initDeckStage() {
+        //deckstage stage
         DeckStage.stage = new Stage ( );//initialize to new stage
         DeckStage.stage.setTitle ("Bridge");
         DeckStage.stage.setOpacity (0.9);
@@ -66,13 +67,18 @@ public class DeckStage {
             event.consume ( );//consume overrides closing
             if (ConfirmBox.display ("Close", "End game?")) stage.close ( );//if confirm to close, close
         });
+
         DeckStage.show = true;//show deckstage for the first time
+
         DeckStage.images = new Image[52];//initialize image deck
         for (int i = 0; i < 52; i++) DeckStage.images[i] = DeckStage.getImage (i + 1);//initialize images
+
         gridPaneCenter = new GridPane ( );//intialize center layout
         gridPaneCenter.setAlignment (Pos.CENTER);
+
         deckHistory = new Deck ( );//init deck history
         deckHistory.deck = Deck.resize (deckHistory.deck, 0);//empty container
+
         winningTricks = new Deck ( );//init winning tricks
         winningTricks.deck = Deck.resize (winningTricks.deck, 0);//empty container
     }
@@ -99,11 +105,14 @@ public class DeckStage {
     private static void start(Deck players[], int revealDirection,
                               int currentDirection, int dummyDirection,
                               boolean preplay, boolean showdummy) {
+        //WARNING BOILERPLATE CODE BELOW
         BorderPane borderPane = new BorderPane ( );//init layout for scene
         int temp = currentDirection + 2;//currentdirection is across from bottom, displayed direction
+
         temp %= 4;//keep in range
         HBox topCards = getHBoxCards (dummyDirection, temp, players,//get hand
                 players[temp], images, 100, false, (temp == revealDirection || temp == dummyDirection));
+
         ++temp;
         temp %= 4;
         topCards.setAlignment (Pos.CENTER);
@@ -111,11 +120,13 @@ public class DeckStage {
                 getVBoxDummyCards (dummyDirection, temp, players, players[temp], images, 100,
                         true, currentDirection == dummyDirection, true)
                 : getVBoxCards (players[(temp %= 4)], images, true, 100, temp == revealDirection, temp %= 4);
+
         ++temp;
         temp %= 4;
         rightCards.setAlignment (Pos.CENTER);
         HBox bottomCards = getHBoxCards (dummyDirection, temp, players,//get hand
                 players[(temp)], images, 100, !preplay, (temp == revealDirection || temp == dummyDirection));
+
         ++temp;
         temp %= 4;
         bottomCards.setAlignment (Pos.CENTER);
@@ -124,6 +135,7 @@ public class DeckStage {
                         false, currentDirection == dummyDirection, true)
                 : getVBoxCards (players[temp], images, false, 100, temp == revealDirection, temp % 4);//normal cards
         leftCards.setAlignment (Pos.CENTER);
+
         //Below code use is to
         //Set cards into groups and then an hbox <- layouts
         //to align the cards properly
@@ -132,6 +144,8 @@ public class DeckStage {
         Group leftGroup = new Group (leftCards);
         Group topGroup = new Group (topCards);
         Group bottomGroup = new Group (bottomCards);
+
+        //top cards
         HBox alignTop = new HBox (topGroup);
         alignTop.getChildren ( ).add (new Label ("   "));
         Label topLabel = new Label (" " + Bid.nDirectiontolsDirection ((currentDirection + 2) % 4));
@@ -141,8 +155,12 @@ public class DeckStage {
         alignTop.getChildren ( ).add (0, topLabel);
         alignTop.setAlignment (Pos.CENTER);
         alignTop.setRotate (180);
+
+        //right cards
         VBox alignRight = new VBox (rightGroup);
         alignRight.setAlignment (Pos.CENTER);
+
+        //bottom cards
         HBox alignBottom = new HBox (bottomGroup);
         alignBottom.getChildren ( ).add (new Label ("   "));
         Label bottomLabel = new Label (Bid.nDirectiontolsDirection ((currentDirection + 4) % 4));
@@ -152,9 +170,13 @@ public class DeckStage {
         alignBottom.getChildren ( ).add (bottomLabel);
         alignBottom.setAlignment (Pos.CENTER);
         alignBottom.setRotate (180);
+
+        //left cards
         VBox alignLeft = new VBox (leftGroup);
         alignLeft.setRotate (180);
         alignLeft.setAlignment (Pos.CENTER);
+
+        //center gridpane & setting borderpane
         borderPane.setCenter (gridPaneCenter);
         borderPane.setTop (alignTop);
         borderPane.setRight (alignRight);
@@ -164,10 +186,12 @@ public class DeckStage {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize (
                 BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true
         ));//set background image
+
         Background background = new Background (backgroundImage);
         borderPane.setBackground (background);//incorporate background image
         borderPane.setMinSize (1200, 675);
         stage.setScene (new Scene (borderPane));
+
         if (show) {//if show, display window
             stage.setResizable (false);
             stage.show ( );
@@ -254,14 +278,14 @@ public class DeckStage {
     }
 
     private static boolean isPlayersEmpty(Deck players[]) {
-        for (Deck aDeck : players)//check if there is hand is empty
+        for (Deck aDeck : players)//check if there is a hand that's empty
             if (aDeck.deck.length > 0)
                 return false;
         return true;
     }
 
     private static int getCenterPosRow(int currentDirection) {
-        switch (currentDirection) {
+        switch (currentDirection) {//return x alignment value for the center gridpane corresponding to direction
             case 0:
                 return 0;
             case 1:
@@ -278,7 +302,7 @@ public class DeckStage {
     }
 
     private static int getCenterPosCol(int currentDirection) {
-        switch (currentDirection) {
+        switch (currentDirection) {//return corresponding y coordinate value for center grid pane
             case 0:
                 return 1;
             case 1:
@@ -298,12 +322,16 @@ public class DeckStage {
                                             Image image, Card card, int height) {
         Button button = new Button ( );
         button.setMinSize (height * 17 / 22, height);
+
+        //set background of button to card so button is a clickable card
         BackgroundImage backgroundImage = new BackgroundImage (image,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background (backgroundImage);
         button.setBackground (background);
-        button.setOnAction (event -> EventHandler (dummyDirection, currentDirection, players, card));
+
+        //set button reaction
+        button.setOnAction (event -> EventHandler (dummyDirection, currentDirection, players, card));//set click reaction
         return button;
     }
 
@@ -313,13 +341,13 @@ public class DeckStage {
         HBox hBox = new HBox (-1 * height);
         if (reveal) {
             if (clickable) for (Card card :
-                    deck.deck) {
+                    deck.deck) {//get clickable image
                 Image image = images[card.nvalue];
                 hBox.getChildren ( ).add (getClickableImage (dummyDirection, currentDirection, players, image,
                         card, height));
             }
             else for (Card card :
-                    deck.deck) {
+                    deck.deck) {//get boring pictures
                 Image image = images[card.nvalue];
                 ImageView imageView = new ImageView (image);
                 imageView.setPreserveRatio (true);
@@ -327,7 +355,7 @@ public class DeckStage {
                 hBox.getChildren ( ).add (imageView);
             }
         } else {
-            for (Card aDeck : deck.deck) {
+            for (Card aDeck : deck.deck) {//card back
                 ImageView imageView = new ImageView (getImage ("b"));
                 hBox.getChildren ( ).add (imageView);
             }
@@ -342,38 +370,43 @@ public class DeckStage {
     private static VBox getVBoxCards(Deck deck, Image[] images,
                                      boolean right, int height,
                                      boolean reveal, int currentDirection) {
-        VBox vBox = new VBox (-1 * height * 9 / 7);
+        VBox vBox = new VBox (-1 * height * 9 / 7);//set width spacing between cards
         if (reveal) for (Card card :
                 deck.deck) {
-            Image image = images[card.nvalue];
+            Image image = images[card.nvalue];//get image with value
             ImageView imageView = new ImageView (image);
-            if (right) imageView.setRotate (90);
+            if (right) imageView.setRotate (90);//right vs left rotation
             else imageView.setRotate (-90);
             vBox.getChildren ( ).add (imageView);
         }
-        else for (Card aDeck : deck.deck) {
-            ImageView imageView = new ImageView (getImage ("b"));
-            if (right) imageView.setRotate (90);
+        else for (Card aDeck : deck.deck) {//get back
+            ImageView imageView = new ImageView (getImage ("b"));//set imag eto card back
+            if (right) imageView.setRotate (90);//right vs left rotation
             else imageView.setRotate (-90);
             vBox.getChildren ( ).add (imageView);
         }
-        Label direction = new Label (Bid.nDirectiontolsDirection (currentDirection));
+
+        Label direction = new Label (Bid.nDirectiontolsDirection (currentDirection));//add direction to hbox
         direction.setFont (Font.font ("Verdana", 20));
         direction.setTextFill (Color.GHOSTWHITE);
-        if (!right) direction.setRotate (180);
+        if (!right) direction.setRotate (180);//patching for rotation
         vBox.getChildren ( ).add (0, direction);
+
         return vBox;
     }
 
     private static VBox getVBoxDummyCards(int dummyDirection, int currentDirection, Deck players[],
                                           Deck deck, Image[] images, int height, boolean right,
                                           boolean clickable, boolean reveal) {
-        Deck seperated[] = Deck.seperateBySuit (players[dummyDirection]);
+        Deck seperated[] = Deck.seperateBySuit (players[dummyDirection]);//get seperated by suit style
         VBox vBox = new VBox ( );
-        for (int i = 3; i >= 0; i--)
+
+        for (int i = 3; i >= 0; i--)//add in order to be displayed
             vBox.getChildren ( ).add (getHBoxCards (dummyDirection, currentDirection,
                     players, seperated[i], images, height, clickable, reveal));
-        Label direction = new Label (Bid.nDirectiontolsDirection (currentDirection));
+        Label direction = new Label (Bid.nDirectiontolsDirection (currentDirection));//name the direction of player
+
+        //patch for rotation
         if (!right) direction.setRotate (180);
         vBox.getChildren ( ).add (0, direction);
         if (right) vBox.setRotate (180);

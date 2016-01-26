@@ -20,10 +20,12 @@ public class Deck {
 
     public static Deck[] seperateBySuit(Deck masterDeck) {//seperate hand into suit
         Deck deck[] = new Deck[4];//for 4 suita of a hand
+
         for (int i = 0; i < 4; i++) {//init deck array
             deck[i] = new Deck ( );
             deck[i].deck = new Card[0];
         }
+
         for (int i = 0; i < 4; i++) {//sort by suit foreach suit
             for (int j = 0; j < masterDeck.deck.length; j++) {//foreach card in hand
                 if (masterDeck.deck[j].prioritysuit == i) {//if is current suit number, post trump
@@ -31,6 +33,7 @@ public class Deck {
                 }
             }
         }
+
         return deck;
     }
 
@@ -84,6 +87,7 @@ public class Deck {
                 deck[i - 1] = deck[i];
             else for (int i = 1; i < deck.length; i++)//if pos is first element, unecessary microoptimization
                 deck[i - 1] = deck[i];
+
             deck = resize (deck, deck.length - 1);//resize deck
         } else System.out.println ("No card found that nvalue matches parameter");
         return card;//return card for debugging

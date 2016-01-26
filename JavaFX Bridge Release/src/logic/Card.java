@@ -18,6 +18,7 @@ public class Card {
     public Card(int nvalue) {
         new Card ( );
         this.nvalue = nvalue;//set global
+
         //translate
         nValuetonSuitRank ( );
         nSuitRanktosSuitRank ( );

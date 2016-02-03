@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="bridge:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/bridge_jar</output-path>
+    <root id="archive" name="bridge.jar">
+      <element id="module-output" name="bridge" />
+    </root>
+  </artifact>
+</component>

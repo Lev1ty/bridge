@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="JavaFX Bridge Release" />
+      <artifact name="JavaFX Bridge Release:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
@@ -60,11 +66,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MenuStage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/MenuStage.java">
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/logic/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38235295">
-              <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Deck.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/logic/Deck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="102" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Score.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/logic/Score.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlertBox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/helpers/AlertBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfirmBox.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/helpers/ConfirmBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.23402163">
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -106,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/helpers/ConfirmBox.java" />
         <option value="$PROJECT_DIR$/src/logic/Auction.java" />
         <option value="$PROJECT_DIR$/src/main/ScoreStage.java" />
-        <option value="$PROJECT_DIR$/src/logic/Bid.java" />
         <option value="$PROJECT_DIR$/src/logic/Card.java" />
         <option value="$PROJECT_DIR$/src/logic/Deck.java" />
         <option value="$PROJECT_DIR$/src/logic/Score.java" />
@@ -114,6 +159,7 @@
         <option value="$PROJECT_DIR$/src/main/DeckStage.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/MenuStage.java" />
+        <option value="$PROJECT_DIR$/src/logic/Bid.java" />
       </list>
     </option>
   </component>
@@ -160,7 +206,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -192,28 +238,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFX Bridge Release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFX Bridge Release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -233,24 +257,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFX Bridge Release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFX Bridge Release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,8 +277,10 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX/src/sample/Main.java" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/jdk1.8.0_71" />
     <property name="SearchEverywhereHistoryKey" value="Image&#9;PSI&#9;JAVA://main.DeckStage#getImage&#10;getImage&#9;PSI&#9;JAVA://main.DeckStage#getImage&#10;bidsta&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/main/BidStage.java&#10;bid&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/logic/Bid.java&#10;Bri&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/logic/BridgeScore.java&#10;score&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/main/ScoreStage.java&#10;deck&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/main/DeckStage.java&#10;main&#9;FILE&#9;file://C:/Users/adamx/Documents/GitHub/Bridge/JavaFX Bridge Release/src/main/Main.java&#10;suitto&#9;PSI&#9;JAVA://logic.Card#nSuittoprioritySuit" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -593,20 +605,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1177" extended-state="0" />
-    <editor active="false" />
+    <frame x="953" y="0" width="974" height="1177" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922202" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32334384" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32248804" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32248804" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922202" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4737418" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4737418" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -616,6 +627,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow to" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922202" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -650,13 +662,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/MenuStage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/DeckStage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="202" column="95" selection-start-line="202" selection-start-column="95" selection-end-line="202" selection-end-column="95" />
-          <folding>
-            <element signature="method#initDeckStage#0;class#DeckStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,18 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#1;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#2;class#BidStage#0" expanded="false" />
-            <element signature="method#initAuction#0;class#BidStage#0" expanded="false" />
-            <element signature="method#start#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getLabel#0;class#BidStage#0" expanded="false" />
-            <element signature="e#4890#4904#0" expanded="false" />
-            <element signature="method#eventHandler#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getGridePane#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getBidRow#0;class#BidStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -683,25 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#0;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#1;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#resize#0;class#Deck#0" expanded="false" />
-            <element signature="method#isThereSuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#push_back#0;class#Deck#0" expanded="false" />
-            <element signature="method#remove#0;class#Deck#0" expanded="false" />
-            <element signature="method#printDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#1;class#Deck#0" expanded="false" />
-            <element signature="e#3398#3440#0" expanded="false" />
-            <element signature="method#sortByRank#0;class#Deck#0" expanded="false" />
-            <element signature="method#Shuffle#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#1;class#Deck#0" expanded="false" />
-            <element signature="e#5118#5144#0" expanded="false" />
-            <element signature="method#assignDirection#0;class#Deck#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,22 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding>
-            <element signature="docComment;class#Card#0" expanded="false" />
-            <element signature="method#Card#0;class#Card#0" expanded="false" />
-            <element signature="method#Card#1;class#Card#0" expanded="false" />
-            <element signature="method#nDirection#0;class#Card#0" expanded="false" />
-            <element signature="method#Print#0;class#Card#0" expanded="false" />
-            <element signature="n#!!doc;n#nSuittoprioritySuit#0;n#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuitRanktosSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittosSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nRanktosRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittolsSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nDirectiontosDirection#0;class#Card#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -732,7 +702,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="e#300#301#0" expanded="false" />
+            <element signature="e#329#330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -740,9 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#initDeckStage#0;class#DeckStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -750,25 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#0;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#1;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#resize#0;class#Deck#0" expanded="false" />
-            <element signature="method#isThereSuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#push_back#0;class#Deck#0" expanded="false" />
-            <element signature="method#remove#0;class#Deck#0" expanded="false" />
-            <element signature="method#printDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#1;class#Deck#0" expanded="false" />
-            <element signature="e#3398#3440#0" expanded="false" />
-            <element signature="method#sortByRank#0;class#Deck#0" expanded="false" />
-            <element signature="method#Shuffle#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#1;class#Deck#0" expanded="false" />
-            <element signature="e#5118#5144#0" expanded="false" />
-            <element signature="method#assignDirection#0;class#Deck#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,22 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-          <folding>
-            <element signature="docComment;class#Card#0" expanded="false" />
-            <element signature="method#Card#0;class#Card#0" expanded="false" />
-            <element signature="method#Card#1;class#Card#0" expanded="false" />
-            <element signature="method#nDirection#0;class#Card#0" expanded="false" />
-            <element signature="method#Print#0;class#Card#0" expanded="false" />
-            <element signature="n#!!doc;n#nSuittoprioritySuit#0;n#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuitRanktosSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittosSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nRanktosRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittolsSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nDirectiontosDirection#0;class#Card#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -799,7 +734,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="e#300#301#0" expanded="false" />
+            <element signature="e#329#330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -807,18 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="docComment;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#1;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#2;class#BidStage#0" expanded="false" />
-            <element signature="method#initAuction#0;class#BidStage#0" expanded="false" />
-            <element signature="method#start#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getLabel#0;class#BidStage#0" expanded="false" />
-            <element signature="e#4890#4904#0" expanded="false" />
-            <element signature="method#eventHandler#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getGridePane#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getBidRow#0;class#BidStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,9 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#initDeckStage#0;class#DeckStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,25 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="docComment;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#0;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#1;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#resize#0;class#Deck#0" expanded="false" />
-            <element signature="method#isThereSuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#push_back#0;class#Deck#0" expanded="false" />
-            <element signature="method#remove#0;class#Deck#0" expanded="false" />
-            <element signature="method#printDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#1;class#Deck#0" expanded="false" />
-            <element signature="e#3398#3440#0" expanded="false" />
-            <element signature="method#sortByRank#0;class#Deck#0" expanded="false" />
-            <element signature="method#Shuffle#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#1;class#Deck#0" expanded="false" />
-            <element signature="e#5118#5144#0" expanded="false" />
-            <element signature="method#assignDirection#0;class#Deck#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,22 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;class#Card#0" expanded="false" />
-            <element signature="method#Card#0;class#Card#0" expanded="false" />
-            <element signature="method#Card#1;class#Card#0" expanded="false" />
-            <element signature="method#nDirection#0;class#Card#0" expanded="false" />
-            <element signature="method#Print#0;class#Card#0" expanded="false" />
-            <element signature="n#!!doc;n#nSuittoprioritySuit#0;n#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nValuetonRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuitRanktosSuitRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittosSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nRanktosRank#0;class#Card#0" expanded="false" />
-            <element signature="method#nSuittolsSuit#0;class#Card#0" expanded="false" />
-            <element signature="method#nDirectiontosDirection#0;class#Card#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,7 +773,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="e#300#301#0" expanded="false" />
+            <element signature="e#329#330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -893,18 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="docComment;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#1;class#BidStage#0" expanded="false" />
-            <element signature="method#BidStage#2;class#BidStage#0" expanded="false" />
-            <element signature="method#initAuction#0;class#BidStage#0" expanded="false" />
-            <element signature="method#start#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getLabel#0;class#BidStage#0" expanded="false" />
-            <element signature="e#4890#4904#0" expanded="false" />
-            <element signature="method#eventHandler#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getGridePane#0;class#BidStage#0" expanded="false" />
-            <element signature="method#getBidRow#0;class#BidStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,9 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="40" selection-end-column="11" />
-          <folding>
-            <element signature="method#initDeckStage#0;class#DeckStage#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,25 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="28" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#0;class#Deck#0" expanded="false" />
-            <element signature="method#Deck#1;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#resize#0;class#Deck#0" expanded="false" />
-            <element signature="method#isThereSuit#0;class#Deck#0" expanded="false" />
-            <element signature="method#push_back#0;class#Deck#0" expanded="false" />
-            <element signature="method#remove#0;class#Deck#0" expanded="false" />
-            <element signature="method#printDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#sortBySuit#1;class#Deck#0" expanded="false" />
-            <element signature="e#3398#3440#0" expanded="false" />
-            <element signature="method#sortByRank#0;class#Deck#0" expanded="false" />
-            <element signature="method#Shuffle#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#0;class#Deck#0" expanded="false" />
-            <element signature="method#initDeck#1;class#Deck#0" expanded="false" />
-            <element signature="e#5118#5144#0" expanded="false" />
-            <element signature="method#assignDirection#0;class#Deck#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -948,7 +805,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#300#301#0" expanded="false" />
+            <element signature="e#329#330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1058,128 +918,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/ConfirmBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7402032">
-          <caret line="37" column="86" selection-start-line="37" selection-start-column="86" selection-end-line="37" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic/Auction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5805515">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="method#getContractBid#0;class#Auction#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic/Bid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="244" column="38" selection-start-line="244" selection-start-column="38" selection-end-line="244" selection-end-column="38" />
-          <folding>
-            <element signature="docComment;class#Bid#0" expanded="false" />
-            <element signature="method#Bid#0;class#Bid#0" expanded="false" />
-            <element signature="method#Bid#1;class#Bid#0" expanded="false" />
-            <element signature="method#Bid#2;class#Bid#0" expanded="false" />
-            <element signature="method#Bid#3;class#Bid#0" expanded="false" />
-            <element signature="method#nDirectiontosDirection#0;class#Bid#0" expanded="false" />
-            <element signature="method#nDirectiontolsDirection#0;class#Bid#0" expanded="false" />
-            <element signature="method#sDirectiontonDirection#0;class#Bid#0" expanded="false" />
-            <element signature="method#nSuittosSuit#0;class#Bid#0" expanded="false" />
-            <element signature="method#Print#0;class#Bid#0" expanded="false" />
-            <element signature="method#sValuetonValue#0;class#Bid#0" expanded="false" />
-            <element signature="method#nValuetonSuit#0;class#Bid#0" expanded="false" />
-            <element signature="method#nValuetonLevel#0;class#Bid#0" expanded="false" />
-            <element signature="e#7129#7173#0" expanded="false" />
-            <element signature="method#nValuetonSuitLevel#0;class#Bid#0" expanded="false" />
-            <element signature="method#nSuittosSuit#1;class#Bid#0" expanded="false" />
-            <element signature="method#nLeveltosLevel#0;class#Bid#0" expanded="false" />
-            <element signature="method#nSuitLeveltosSuitLevel#0;class#Bid#0" expanded="false" />
-            <element signature="method#nDirectiontosDirection#1;class#Bid#0" expanded="false" />
-            <element signature="method#nDirectiontolsDirection#1;class#Bid#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9970973">
-          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.628447">
-          <caret line="89" column="12" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic/Score.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17271408">
-          <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
-          <folding>
-            <element signature="docComment;class#Score#0" expanded="false" />
-            <element signature="method#Score#0;class#Score#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/BidStage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8766328">
-          <caret line="272" column="62" selection-start-line="272" selection-start-column="62" selection-end-line="272" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="221" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/DeckStage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0478956">
-          <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
-          <folding>
-            <element signature="method#initDeckStage#0;class#DeckStage#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ScoreStage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40783745">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.20058997">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.425">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding />
+        <state vertical-scroll-proportion="0.050147492">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="e#300#301#0" expanded="false" />
+            <element signature="e#329#330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/MenuStage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38235295">
-          <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ScoreStage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic/Auction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#1244#1245#0" expanded="false" />
+            <element signature="e#1328#1329#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic/Bid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26745328">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic/Score.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/AlertBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/ConfirmBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23402163">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1189,7 +1025,13 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
+          <artifact-editor>
+            <show-content>
+              <type id="artifact" />
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>JavaFX Bridge Release</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1241,7 +1083,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

@@ -1,0 +1,20 @@
+Bridge Card Game – Activity Log
+December 9, 2015 – Basic Planning (Card game to do, distribution of responsibilities)
+December 10, 2015 – Completed proposal with sample screenshots
+December 14, 2015 – First day working on the program
+January 7, 2016 – Working demo finished
+January 9, 2016 – Bidding GUI completed
+January 10, 2015 – AI excluded from original plan, general GUI set as main focus
+January 11, 2016 – Auction program optimized
+January 12, 2016 – Card game platform changed (deckStage method)
+January 14, 2016 – Cards are displayed, cards layout format changed
+January 15, 2016 – Playing Direction bugs fixed, game GUI complete, logic optimizations
+January 16, 2016 – GUI appearance enhancements (background, colour, word fonts, card theme)
+January 18, 2016 – Played cards are now displayed neatly in the centre
+January 19, 2016 – Registering suits and card values, trick-winning recognition algorithms
+January 21, 2016 – Pre-game menu created, compare method that detects winning tricks completed, and control statements set for playing cards (error checks)
+January 22, 2016 – Scoring system implemented without success, scoring logic fixed and completed, first complete version of game underwent beta-testing
+January 24, 2016 – General debugging (e.g. fixed an issue where double can be first bid)
+January 25, 2016 – Comments added, instructions added, further beta-testing
+January 26, 2016 – Final release handed in
+

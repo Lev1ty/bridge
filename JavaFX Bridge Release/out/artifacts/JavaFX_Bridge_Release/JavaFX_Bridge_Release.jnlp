@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFX_Bridge_Release.jnlp">
+  <information>
+    <title>Bridge</title>
+    <vendor>Tom and Adam</vendor>
+    <description>Grade 10 ICS Summative Project</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JavaFX_Bridge_Release.jar" size="14811065" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="main.Main"  name="JavaFX Bridge Release" />
+  <update check="background"/>
+</jnlp>
